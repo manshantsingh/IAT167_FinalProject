@@ -2,7 +2,6 @@ class Living {
   PVector pos, vel, acc;
   int w, h, health;
   float mass;
-  boolean onBase;
 
   Living(float x, float y, int w_, int h_, int health_, float mass_) {
     pos=new PVector(x, y);
@@ -23,6 +22,9 @@ class Living {
     acc.add(force);
   }
   boolean collision(Living other) {
+    return abs(pos.x-other.pos.x)<w/2+other.w/2 && abs(pos.y-other.pos.y)<h/2+other.h/2;
+  }
+  boolean collision(Lifeless other) {
     return abs(pos.x-other.pos.x)<w/2+other.w/2 && abs(pos.y-other.pos.y)<h/2+other.h/2;
   }
 
