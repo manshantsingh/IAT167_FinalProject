@@ -8,7 +8,6 @@ class Lifeless {
     h=h_;
   }
 
-
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);

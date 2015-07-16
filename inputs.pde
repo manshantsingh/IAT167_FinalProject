@@ -11,6 +11,7 @@ void keyPressed() {
   } else if (key=='w') up=true;
   else if (key=='a') left=true;
   else if (key=='d') right=true;
+  else if(key=='r' && !p.alive) respawn();
 }
 
 void keyReleased() {
@@ -21,5 +22,12 @@ void keyReleased() {
   } else if (key=='w') up=false;
   else if (key=='a') left=false;
   else if (key=='d') right=false;
+}
+
+int mx, my;
+void mousePressed() {
+  mx=mouseX;
+  my=mouseY;
+  println("mouse coordinates: "+mx+", "+my);
 }
 

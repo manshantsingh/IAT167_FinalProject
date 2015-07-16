@@ -5,6 +5,7 @@ class Player extends Living {
   Player(float x, float y) {
     super(x, y, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH, PLAYER_MASS);
     angle=0;
+    camera=pos;
   }
 
   void update() {
@@ -14,6 +15,7 @@ class Player extends Living {
     angle+=vel.x*PLAYER_ROTATION_SPEED;
     vel.x*=FRICTION;
     checkBase();
+    if(alive) checkBounds();
   }
 
   void draw() {
@@ -26,6 +28,15 @@ class Player extends Living {
     line(-w/2, 0, w/2, 0);
     popMatrix();
   }
+  
+  void checkBounds(){
+    if(pos.y>height) die();
+  }
+  
+  void die(){
+    camera=pos.get();
+    alive=false;
+  }
 
   void controls() {
     if (left) move(leftForce);
@@ -37,7 +48,7 @@ class Player extends Living {
     onBase=false;
     for (int i=0; i<dead.size (); i++) {
       Lifeless d=dead.get(i);
-      if (collision(d)) {
+      if (collision(d) && vel.y>=0) {
         pos.y=d.pos.y-d.h/2-h/2;
         vel.y=0;
         onBase=true;

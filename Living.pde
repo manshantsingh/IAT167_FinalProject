@@ -2,6 +2,7 @@ class Living {
   PVector pos, vel, acc;
   int w, h, health;
   float mass;
+  boolean alive;
 
   Living(float x, float y, int w_, int h_, int health_, float mass_) {
     pos=new PVector(x, y);
@@ -11,6 +12,7 @@ class Living {
     h=h_;
     health=health_;
     mass=mass_;
+    alive=true;
   }
 
   void update() {
