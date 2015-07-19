@@ -4,9 +4,9 @@ final float JUMP_FORCE=-25;
 final float PLAYER_SPEED=1;
 final int PLAYER_SIZE=80;
 final int PLAYER_MAX_HEALTH=3;
-final float PLAYER_MASS=5;
 final float PLAYER_ROTATION_SPEED=2.0/PLAYER_SIZE;
 final float FRICTION=0.95;
+final float BOUNCE_BACK=-0.5;
 
 //all lists
 ArrayList<Lifeless> dead=new ArrayList<Lifeless>();
@@ -26,7 +26,8 @@ void setup() {
 //  box.resize(100,100);
   player=new Player(width/2, 50);
   dead.add(new Lifeless(width/2, height-50, 5000, 100));
-  new Enemy(width,50,PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH, PLAYER_MASS,3,10,-2500+PLAYER_SIZE+width/2,2500+width/2-PLAYER_SIZE);
+  dead.add(new Lifeless(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
+  new Enemy(width,50,PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH,3,10,-2500+PLAYER_SIZE+width/2,2500+width/2-PLAYER_SIZE);
 }
 
 void draw() {

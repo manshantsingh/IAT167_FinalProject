@@ -6,8 +6,8 @@ class Enemy extends Living{
   float rotationValue, positionOffset;
   int leftBound,rightBound;
   
-  Enemy(float x, float y, int w_, int h_, int health_, float mass_, float speed_,int scoreAdded_,int leftBound_,int rightBound_){
-      super(x,y,w_,h_,health_,mass_);
+  Enemy(float x, float y, int w_, int h_, int health_, float speed_,int scoreAdded_,int leftBound_,int rightBound_){
+      super(x,y,w_,h_,health_);
       speed=speed_;
       scoreAdded=scoreAdded_;
       angle=0;

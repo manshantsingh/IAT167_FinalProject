@@ -2,7 +2,7 @@ class Player extends Living {
   float angle;
 
   Player(float x, float y) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH, PLAYER_MASS);
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH);
     angle=0;
     camera=pos;
   }
