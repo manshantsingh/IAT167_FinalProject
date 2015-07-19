@@ -50,17 +50,14 @@ class Living {
           pos.y=d.pos.y-d.h/2-h/2;
           vel.y=0;
           onBase=true;
-//          return;
-        }
-        else if(vel.y<0  && pos.y-d.pos.y>d.h/2){
+        } else if (vel.y<0  && pos.y-d.pos.y>d.h/2) {
           pos.y=d.pos.y+d.h/2+h/2;
           vel.y*=-1;
         }
-        if(vel.x<0 && pos.x-d.pos.x>d.w/2){
+        if (vel.x<0 && pos.x-d.pos.x>d.w/2) {
           pos.x=d.pos.x+d.w/2+w/2;
           vel.x*=BOUNCE_BACK;
-        }
-        else if(vel.x>0 && d.pos.x-pos.x>d.w/2){
+        } else if (vel.x>0 && d.pos.x-pos.x>d.w/2) {
           pos.x=d.pos.x-d.w/2-w/2;
           vel.x*=BOUNCE_BACK;
         }

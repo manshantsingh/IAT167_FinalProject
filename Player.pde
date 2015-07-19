@@ -12,7 +12,7 @@ class Player extends Living {
     super.update();
     angle+=vel.x*PLAYER_ROTATION_SPEED;
     vel.x*=FRICTION;
-    if(alive) checkBounds();
+    if (alive) checkBounds();
   }
 
   void draw() {
@@ -25,12 +25,12 @@ class Player extends Living {
     line(-w/2, 0, w/2, 0);
     popMatrix();
   }
-  
-  void checkBounds(){
-    if(pos.y>height) die();
+
+  void checkBounds() {
+    if (pos.y>height) die();
   }
-  
-  void die(){
+
+  void die() {
     camera=pos.get();
     alive=false;
   }
@@ -38,9 +38,7 @@ class Player extends Living {
   void controls() {
     if (left) move(leftForce);
     if (right) move(rightForce);
-    if(up && onBase) move(upForce);
+    if (up && onBase) move(upForce);
   }
-
-  
 }
 

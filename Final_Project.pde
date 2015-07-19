@@ -17,28 +17,25 @@ Player player;
 Lifeless d;
 PVector camera;
 int score;
-//PImage box;
 
 
 void setup() {
   size(1000, 700);
-//  box=loadImage("box.png");
-//  box.resize(100,100);
   player=new Player(width/2, 50);
   dead.add(new Lifeless(width/2, height-50, 5000, 100));
   dead.add(new Lifeless(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
-  new Enemy(width,50,PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH,3,10,-2500+PLAYER_SIZE+width/2,2500+width/2-PLAYER_SIZE);
+  new Enemy(width, 50, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH, 3, 10, width+PLAYER_SIZE+10, 2500+width/2-PLAYER_SIZE);
 }
 
 void draw() {
-//  println(frameRate);
+  //  println(frameRate);
   background(255);
   camera();
   for (int i=0; i<dead.size (); i++) {
     Lifeless d=dead.get(i);
     d.draw();
   }
-  for(int i=0;i<enemies.size();i++){
+  for (int i=0; i<enemies.size (); i++) {
     Enemy e=enemies.get(i);
     e.update();
     e.draw();
@@ -46,12 +43,12 @@ void draw() {
   player.update();
   player.draw();
 }
-void camera(){
-  translate(-camera.x,-camera.y);
-  translate(width/2,height/2);
+void camera() {
+  translate(-camera.x, -camera.y);
+  translate(width/2, height/2);
 }
 
-void respawn(){
+void respawn() {
   player=new Player(width/2, 50);
 }
 

@@ -1,7 +1,7 @@
 boolean up, left, right;
 PVector leftForce=new PVector(-PLAYER_SPEED, 0);
 PVector rightForce=new PVector(PLAYER_SPEED, 0);
-PVector upForce=new PVector(0,JUMP_FORCE);
+PVector upForce=new PVector(0, JUMP_FORCE);
 
 void keyPressed() {
   if (key==CODED) {
@@ -11,7 +11,7 @@ void keyPressed() {
   } else if (key=='w') up=true;
   else if (key=='a') left=true;
   else if (key=='d') right=true;
-  else if(key=='r' && !player.alive) respawn();
+  else if (key=='r' && !player.alive) respawn();
 }
 
 void keyReleased() {
@@ -26,8 +26,8 @@ void keyReleased() {
 
 int mx, my;
 void mousePressed() {
-  mx=mouseX;
-  my=mouseY;
+  mx=mouseX+(int)camera.x-width/2;
+  my=mouseY+(int)camera.y-height/2;
   println("mouse coordinates: "+mx+", "+my);
 }
 
