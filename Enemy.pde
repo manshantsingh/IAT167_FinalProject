@@ -35,12 +35,13 @@ class Enemy extends Living {
   }
 
   void hitPlayer() {
-    if (collision(player)) {
+    if (player.alive && collision(player)) {
       if (pos.y-player.pos.y>h/2) {
         decreaseHealth(1);
         player.vel.y*=-1;
       } else {
         player.decreaseHealth(1);
+        player.pos.x-=pos.x-player.pos.x;
         player.vel.mult(-1);
       }
     }

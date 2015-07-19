@@ -7,6 +7,7 @@ final int PLAYER_MAX_HEALTH=3;
 final float PLAYER_ROTATION_SPEED=2.0/PLAYER_SIZE;
 final float FRICTION=0.95;
 final float BOUNCE_BACK=-0.5;
+final float CAMERA_SPEED=0.5;
 
 //all lists
 ArrayList<Lifeless> dead=new ArrayList<Lifeless>();
@@ -15,7 +16,7 @@ ArrayList<Enemy> enemies=new ArrayList<Enemy>();
 //all other variables
 Player player;
 Lifeless d;
-PVector camera;
+PVector camera, camTarget;
 int score;
 
 
@@ -44,6 +45,7 @@ void draw() {
   player.draw();
 }
 void camera() {
+  camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
   translate(-camera.x, -camera.y);
   translate(width/2, height/2);
 }
