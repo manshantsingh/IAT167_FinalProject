@@ -8,10 +8,12 @@ void keyPressed() {
     if (keyCode==UP) up=true;
     else if (keyCode==LEFT) left=true;
     else if (keyCode==RIGHT) right=true;
-  } else if (key=='w') up=true;
-  else if (key=='a') left=true;
-  else if (key=='d') right=true;
-  else if (key=='r' && !player.alive) respawn();
+  } else if (key=='w'||key=='W') up=true;
+  else if (key=='a'||key=='A') left=true;
+  else if (key=='d'||key=='D') right=true;
+  else if ((key=='r'||key=='R')&& !player.alive) respawn();
+  else if (key=='['||key=='{') zoomOut();
+  else if (key==']'||key=='}') zoomIn();
 }
 
 void keyReleased() {
@@ -19,9 +21,9 @@ void keyReleased() {
     if (keyCode==UP) up=false;
     else if (keyCode==LEFT) left=false;
     else if (keyCode==RIGHT) right=false;
-  } else if (key=='w') up=false;
-  else if (key=='a') left=false;
-  else if (key=='d') right=false;
+  } else if (key=='w'||key=='W') up=false;
+  else if (key=='a'||key=='A') left=false;
+  else if (key=='d'||key=='D') right=false;
 }
 
 int mx, my;

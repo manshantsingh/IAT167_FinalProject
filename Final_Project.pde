@@ -8,6 +8,7 @@ final float PLAYER_ROTATION_SPEED=2.0/PLAYER_SIZE;
 final float FRICTION=0.95;
 final float BOUNCE_BACK=-0.5;
 final float CAMERA_SPEED=0.5;
+final float ZOOM_INCREMENT=1.1;
 
 //all lists
 ArrayList<Lifeless> dead=new ArrayList<Lifeless>();
@@ -18,6 +19,7 @@ Player player;
 Lifeless d;
 PVector camera, camTarget;
 int score;
+float zoomValue=1.0;
 
 
 void setup() {
@@ -43,14 +45,24 @@ void draw() {
   }
   player.update();
   player.draw();
+  textSize((int)(22/zoomValue));
+  text("current zoomValue: "+zoomValue,camera.x,camera.y);
 }
 void camera() {
   camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
-  translate(-camera.x, -camera.y);
   translate(width/2, height/2);
+  scale(zoomValue);
+  translate(-camera.x, -camera.y);
 }
 
 void respawn() {
   player=new Player(width/2, 50);
+}
+
+void zoomIn(){
+  if(zoomValue<2.0) zoomValue*=ZOOM_INCREMENT;
+}
+void zoomOut(){
+  if(zoomValue>0.15) zoomValue/=ZOOM_INCREMENT;
 }
 
