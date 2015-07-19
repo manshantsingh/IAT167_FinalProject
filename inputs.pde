@@ -11,7 +11,7 @@ void keyPressed() {
   } else if (key=='w') up=true;
   else if (key=='a') left=true;
   else if (key=='d') right=true;
-  else if(key=='r' && !p.alive) respawn();
+  else if(key=='r' && !player.alive) respawn();
 }
 
 void keyReleased() {

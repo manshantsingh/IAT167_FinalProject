@@ -33,6 +33,16 @@ class Living {
     return abs(pos.x-other.pos.x)<w/2+other.w/2 && abs(pos.y-other.pos.y)<h/2+other.h/2;
   }
   
+  void decreaseHealth(int damage){
+    health-=damage;
+    println(this+" just lost "+damage+" health");
+    if(health<0) die();
+  }
+  
+  void die(){
+    println("this should be overriden");
+  }
+  
   void checkBase() {
     onBase=false;
     for (int i=0; i<dead.size (); i++) {

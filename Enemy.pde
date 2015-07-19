@@ -15,14 +15,37 @@ class Enemy extends Living{
       positionOffset=sin(PI/4)*w-w/2;
       leftBound=leftBound_;
       rightBound=rightBound_;
-      println(leftBound+", "+rightBound);
+      enemies.add(this);
   }
   void update(){
     vel.x=speed;
     super.update();
     angle+=vel.x*rotationValue;
     checkBound();
-    println("enemyX:"+pos.x);
+    hitPlayer();
+//    println("enemyX:"+pos.x);
+  }
+  
+  void die(){
+    score+=scoreAdded;
+    enemies.remove(this);
+  }
+  
+  void checkBound(){
+    if((vel.x<0 && pos.x<leftBound)||(vel.x>0 && pos.x>rightBound)) speed*=-1;
+  }
+  
+  void hitPlayer(){
+    if(collision(player)){
+      if(pos.y-player.pos.y>h/2){
+        decreaseHealth(1);
+        player.vel.y*=-1;
+      }
+      else{
+        player.decreaseHealth(1);
+        player.vel.mult(-1);
+      }
+    }
   }
   
   void draw(){
@@ -34,10 +57,6 @@ class Enemy extends Living{
     fill(128);
     rect(-w/2,-h/2,w,h);
     popMatrix();
-  }
-  
-  void checkBound(){
-    if((vel.x<0 && pos.x<leftBound)||(vel.x>0 && pos.x>rightBound)) speed*=-1;
   }
   
 }
