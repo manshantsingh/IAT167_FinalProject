@@ -8,10 +8,15 @@ class Lifeless {
     h=h_;
   }
 
+  void update() {
+    draw();
+  }
+
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
     fill(0);
+    stroke(0);
     rect(-w/2, -h/2, w, h);
     popMatrix();
   }

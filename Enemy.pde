@@ -1,28 +1,26 @@
 class Enemy extends Living {
   Player target;
   float angle;
-  float speed;
   int scoreAdded;
   float rotationValue, positionOffset;
   int leftBound, rightBound;
 
-  Enemy(float x, float y, int w_, int h_, int health_, float speed_, int scoreAdded_, int leftBound_, int rightBound_) {
+  Enemy(float x, float y, int w_, int h_, int health_, float speed, int scoreAdded_, int leftBound_, int rightBound_) {
     super(x, y, w_, h_, health_);
-    speed=speed_;
+    vel.x=speed;
     scoreAdded=scoreAdded_;
     angle=0;
     rotationValue=PI/(4*w);
     positionOffset=sin(PI/4)*w-w/2;
     leftBound=leftBound_;
     rightBound=rightBound_;
-    enemies.add(this);
   }
   void update() {
-    vel.x=speed;
     super.update();
     angle+=vel.x*rotationValue;
     checkBound();
     hitPlayer();
+    draw();
   }
 
   void die() {
@@ -31,7 +29,7 @@ class Enemy extends Living {
   }
 
   void checkBound() {
-    if ((vel.x<0 && pos.x<leftBound)||(vel.x>0 && pos.x>rightBound)) speed*=-1;
+    if ((vel.x<0 && pos.x<leftBound)||(vel.x>0 && pos.x>rightBound)) vel.x*=-1;
   }
 
   void hitPlayer() {
@@ -54,6 +52,7 @@ class Enemy extends Living {
     translate(0, -val);
     rotate(angle);
     fill(128);
+    stroke(0);
     rect(-w/2, -h/2, w, h);
     popMatrix();
   }

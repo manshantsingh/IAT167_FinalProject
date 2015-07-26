@@ -15,18 +15,45 @@ class Player extends Living {
     super.update();
     angle+=vel.x*PLAYER_ROTATION_SPEED;
     vel.x*=FRICTION;
-    if (alive) checkBounds();
+    if (alive) {
+      checkBounds();
+      checkDanger();
+      checkCheckpoints();
+    }
+    draw();
   }
 
   void draw() {
     pushMatrix();
     strokeWeight(3);
+    stroke(0);
     translate(pos.x, pos.y);
     rotate(angle);
     fill(255, 0, 0, alpha);
     ellipse(0, 0, w, h);
     line(-w/2, 0, w/2, 0);
     popMatrix();
+  }
+
+  void checkCheckpoints() {
+    for (int i=0; i<checkpoints.size (); i++) {
+      Checkpoint c=checkpoints.get(i);
+      if (collision(c)) {
+        c.hit();
+      }
+    }
+    if (collision(finishpoint)) {
+      finishpoint.hit();
+    }
+  }
+
+  void checkDanger() {
+    for (int i=0; i<dangers.size (); i++) {
+      Lifeless d=dangers.get(i);
+      if (collision(d)) {
+        decreaseHealth(PLAYER_MAX_HEALTH);
+      }
+    }
   }
 
   void checkBounds() {
@@ -42,7 +69,10 @@ class Player extends Living {
   void controls() {
     if (left) move(leftForce);
     if (right) move(rightForce);
-    if (up && onBase) move(upForce);
+    if (up && onBase) {
+      move(upForce);
+      println(pos);
+    }
   }
 }
 

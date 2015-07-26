@@ -43,8 +43,8 @@ class Living {
 
   void checkBase() {
     onBase=false;
-    for (int i=0; i<dead.size (); i++) {
-      Lifeless d=dead.get(i);
+    for (int i=0; i<bases.size (); i++) {
+      Lifeless d=bases.get(i);
       if (collision(d)) {
         if (vel.y>0 && d.pos.y-pos.y>d.h/2) {
           pos.y=d.pos.y-d.h/2-h/2;
@@ -56,10 +56,10 @@ class Living {
         }
         if (vel.x<0 && pos.x-d.pos.x>d.w/2) {
           pos.x=d.pos.x+d.w/2+w/2;
-          vel.x*=BOUNCE_BACK;
+          vel.x*=-0.1;
         } else if (vel.x>0 && d.pos.x-pos.x>d.w/2) {
           pos.x=d.pos.x-d.w/2-w/2;
-          vel.x*=BOUNCE_BACK;
+          vel.x*=-0.1;
         }
       }
     }
@@ -69,6 +69,7 @@ class Living {
     pushMatrix();
     translate(pos.x, pos.y);
     fill(0, 200, 0);
+    stroke(0);
     rect(-w/2, -h/2, w, h);
     popMatrix();
   }
