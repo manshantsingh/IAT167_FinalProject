@@ -1,6 +1,6 @@
 class Thorn extends Lifeless {
   Thorn(float x, float y, int w_) {
-    super(x, y, w_, 30);
+    super(x, y, w_, 20);
   }
 
   void draw() {

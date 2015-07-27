@@ -1,7 +1,7 @@
 boolean up, left, right;
 PVector leftForce=new PVector(-PLAYER_SPEED, 0);
 PVector rightForce=new PVector(PLAYER_SPEED, 0);
-PVector upForce=new PVector(0, JUMP_FORCE);
+PVector upForce=new PVector(0, PLAYER_JUMP_FORCE);
 
 void keyPressed() {
   if (key==CODED) {

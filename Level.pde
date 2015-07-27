@@ -8,6 +8,8 @@ class Level {
     enemies=new ArrayList<Enemy>();
     checkpoints=new ArrayList<Checkpoint>();
     initializeLevel(num, this);
+    respawnPos=checkpoints.get(0).respawnPos.get();
+    instructions();
     respawn();
   }
 
@@ -15,8 +17,16 @@ class Level {
     player=new Player(respawnPos.x, respawnPos.y);
   }
 
+  void instructions() {
+    fill(0, 150, 0);
+    textSize(48);
+    textAlign(CENTER, CENTER);
+    text("Press R to respawn", width/2, 200);
+  }
+
   void run() {
     background(255);
+    pushMatrix();
     camera();
     for (int i=0; i<bases.size (); i++) {
       bases.get(i).update();
@@ -32,6 +42,8 @@ class Level {
       enemies.get(i).update();
     }
     player.update();
+    popMatrix();
+    if (!player.alive) instructions();
   }
 
   void camera() {

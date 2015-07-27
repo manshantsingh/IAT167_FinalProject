@@ -7,7 +7,7 @@ class Checkpoint extends Lifeless {
     super(x, y, 10, 50);
     checked=false;
     currentColor=color(255, 0, 0);
-    respawnPos=new PVector(x, y-50);
+    respawnPos=new PVector(x, y);
   }
 
   void hit() {

@@ -1,8 +1,8 @@
 //all constants
-final PVector GRAVITY=new PVector(0, 1);
-final float JUMP_FORCE=-25;
+final PVector GRAVITY=new PVector(0, 0.4);
+final float PLAYER_JUMP_FORCE=-10;
 final float PLAYER_SPEED=0.3;
-final int PLAYER_SIZE=80;
+final int PLAYER_SIZE=60;
 final int PLAYER_MAX_HEALTH=3;
 final float PLAYER_ROTATION_SPEED=2.0/PLAYER_SIZE;
 final float FRICTION=0.98;
@@ -24,7 +24,7 @@ Finishpoint finishpoint;
 
 void setup() {
   size(1000, 700);
-  currentLevel=-1;
+  currentLevel=1;
   level=new Level(currentLevel);
 }
 
@@ -32,5 +32,4 @@ void draw() {
   println(frameRate);
   level.run();
 }
-
 
