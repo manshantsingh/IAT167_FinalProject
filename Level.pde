@@ -7,6 +7,7 @@ class Level {
     dangers=new ArrayList<Lifeless>();
     enemies=new ArrayList<Enemy>();
     checkpoints=new ArrayList<Checkpoint>();
+    texts=new ArrayList<Text>();
     initializeLevel(num, this);
     respawnPos=checkpoints.get(0).respawnPos.get();
     instructions();
@@ -20,7 +21,6 @@ class Level {
   void instructions() {
     fill(0, 150, 0);
     textSize(48);
-    textAlign(CENTER, CENTER);
     text("Press R to respawn", width/2, 200);
   }
 
@@ -28,19 +28,12 @@ class Level {
     background(255);
     pushMatrix();
     camera();
-    for (int i=0; i<bases.size (); i++) {
-      bases.get(i).update();
-    }
-    for (int i=0; i<dangers.size (); i++) {
-      dangers.get(i).update();
-    }
-    for (int i=0; i<checkpoints.size (); i++) {
-      checkpoints.get(i).update();
-    }
+    for (int i=0; i<texts.size (); i++) texts.get(i).update();
+    for (int i=0; i<bases.size (); i++) bases.get(i).update();
+    for (int i=0; i<dangers.size (); i++) dangers.get(i).update();
+    for (int i=0; i<enemies.size (); i++) enemies.get(i).update();
+    for (int i=0; i<checkpoints.size (); i++) checkpoints.get(i).update();
     finishpoint.update();
-    for (int i=0; i<enemies.size (); i++) {
-      enemies.get(i).update();
-    }
     player.update();
     popMatrix();
     if (!player.alive) instructions();

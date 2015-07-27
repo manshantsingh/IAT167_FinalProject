@@ -6,6 +6,10 @@ void initializeLevel(int num, Level l) {
     bases.add(new Base(3*width/4+50, height-110, 30, 120));
     checkpoints.add(new Checkpoint(100, height-90));
     finishpoint=new Finishpoint(width, height-90);
+    texts.add(new Text(" A/D or Left/Right\nfor Movement", 150, 2*height/3, 22, color(0)));
+    texts.add(new Text(" W or Up\nfor Jump", 425, 2*height/3, 22, color(0)));
+    texts.add(new Text("Jump", 3*width/4+50, 2*height/3, 22, color(0)));
+    texts.add(new Text("Finish", width, 2*height/3, 22, color(0)));
     break;
   case 2:
     bases.add(new Base(100, height-50, width/3, 30));
@@ -19,6 +23,8 @@ void initializeLevel(int num, Level l) {
     checkpoints.add(new Checkpoint(1200, height-90));
     bases.add(new Base(2700, height-50, 200, 30));
     finishpoint=new Finishpoint(2700, height-90);
+    texts.add(new Text("Checkpoint", 1200, 2*height/3, 22, color(0)));
+    texts.add(new Text("Wait for\nPlatform", 1500, height-200, 22, color(0)));
     break;
   case 3:
     bases.add(new Base(100, height-50, width/3, 30));
@@ -33,6 +39,7 @@ void initializeLevel(int num, Level l) {
     checkpoints.add(new Checkpoint(0, height-90));
     checkpoints.add(new Checkpoint(1200, 260));
     finishpoint=new Finishpoint(1200, -90);
+    texts.add(new Text("Danger", 900, height-200, 22, color(0)));
     break;
   default:
     bases.add(new Base(width/2, height-50, 5000, 100));
@@ -42,6 +49,7 @@ void initializeLevel(int num, Level l) {
     checkpoints.add(new Checkpoint(-1500, height-125));
     checkpoints.add(new Checkpoint(width*2, height-125));
     finishpoint=new Finishpoint(width*2+500, height-125);
+    texts.add(new Text("This is just a testing level\nThis is not actually part of the game\nThe game will keep looping in this level", -1500, 2*height/3, 22, color(0)));
     break;
   }
 }

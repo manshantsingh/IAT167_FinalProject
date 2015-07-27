@@ -14,6 +14,7 @@ ArrayList<Lifeless> bases;
 ArrayList<Lifeless> dangers;
 ArrayList<Enemy> enemies;
 ArrayList<Checkpoint> checkpoints;
+ArrayList<Text> texts;
 
 //all other variables
 Player player;
@@ -24,6 +25,7 @@ Finishpoint finishpoint;
 
 void setup() {
   size(1000, 700);
+  textAlign(CENTER, CENTER);
   currentLevel=1;
   level=new Level(currentLevel);
 }
