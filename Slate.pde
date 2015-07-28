@@ -23,7 +23,7 @@ class FallingSlate extends Slate {
     initialPos=pos.get();
   }
 
-  boolean hit() {
+  boolean hit(Living l) {
     isHit=true;
     return false;
   }

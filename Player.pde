@@ -8,6 +8,7 @@ class Player extends Living {
     camTarget=pos;
     camera=camTarget.get();
     alpha=255;
+    bounceBack=-0.1;
   }
 
   void update() {
@@ -61,7 +62,6 @@ class Player extends Living {
     if (right) move(rightForce);
     if (up && onBase) {
       move(upForce);
-      println(pos);
     }
   }
 }

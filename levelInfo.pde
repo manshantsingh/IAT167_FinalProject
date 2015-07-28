@@ -51,19 +51,21 @@ void initializeLevel(int num, Level l) {
     bases.add(new Compresser(0, height-330, height-80, 100, true));
     bases.add(new Compresser(200, height-330, height-80, 75, false));
     bases.add(new Compresser(400, height-330, height-80, 100, true));
-    texts.add(new Text("?", 2025, 200, 48, color(0)));
+    enemies.add(new WeakEnemy(3000, 250, 2450, 3200));
+    texts.add(new Text("?", 2000, 250, 32, color(0)));
+    texts.add(new Text("Think\nMario", 2400, 200, 22, color(0)));
     checkpoints.add(new Checkpoint(-600, height-90));
     checkpoints.add(new Checkpoint(1435, 305));
-    finishpoint=new Finishpoint(1200, -90);
+    finishpoint=new Finishpoint(3300, 305);
     break;
   default:
     bases.add(new Base(width/2, height-50, 5000, 100));
     bases.add(new Base(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
-    bases.add(new Thorn(width*1.5, height-100, 100));
+    bases.add(new Thorn(width-300, height-100, 100));
     bases.add(new Compresser(-width/2, height-365, height-115, 100, true));
     bases.add(new Compresser(-width/2+200, height-365, height-115, 75, false));
     bases.add(new Compresser(-width/2+400, height-365, height-115, 100, true));
-    enemies.add(new Enemy(width, 50, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH, 3, 10, 0, 2500+width/2-PLAYER_SIZE));
+    enemies.add(new WeakEnemy(width, 50, 0, 2500+width/2-PLAYER_SIZE));
     checkpoints.add(new Checkpoint(-1500, height-125));
     checkpoints.add(new Checkpoint(width*2, height-125));
     finishpoint=new Finishpoint(width*2+500, height-125);

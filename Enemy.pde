@@ -58,3 +58,9 @@ class Enemy extends Living {
   }
 }
 
+class WeakEnemy extends Enemy {
+  WeakEnemy(float x, float y, int leftBound_, int rightBound_) {
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 1, 3, 10, leftBound_, rightBound_);
+  }
+}
+

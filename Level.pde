@@ -4,7 +4,6 @@ class Level {
 
   Level(int num) {
     bases=new ArrayList<Lifeless>();
-    rounders=new ArrayList<Circular>();
     enemies=new ArrayList<Enemy>();
     checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
@@ -33,7 +32,6 @@ class Level {
     camera();
     for (int i=0; i<texts.size (); i++) texts.get(i).update();
     for (int i=0; i<bases.size (); i++) bases.get(i).update();
-    for (int i=0; i<rounders.size (); i++) rounders.get(i).update();
     for (int i=0; i<enemies.size (); i++) enemies.get(i).update();
     for (int i=0; i<checkpoints.size (); i++) checkpoints.get(i).update();
     finishpoint.update();

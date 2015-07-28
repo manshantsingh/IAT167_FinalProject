@@ -12,7 +12,7 @@ class Lifeless {
     draw();
   }
 
-  boolean hit() {
+  boolean hit(Living l) {
     return false;
   }
   void reset() {
@@ -34,8 +34,8 @@ class DangerLifeless extends Lifeless {
     super(x, y, w_, h_);
   }
 
-  boolean hit() {
-    player.decreaseHealth(PLAYER_MAX_HEALTH);
+  boolean hit(Living l) {
+    l.decreaseHealth(DEATH);
     return true;
   }
 }
