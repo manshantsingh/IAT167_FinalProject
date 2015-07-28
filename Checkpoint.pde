@@ -10,10 +10,13 @@ class Checkpoint extends Lifeless {
     respawnPos=new PVector(x, y);
   }
 
-  void hit() {
-    checked=true;
-    currentColor=color(0, 255, 0);
-    level.respawnPos=respawnPos;
+  boolean hit() {
+    if (!checked) {
+      checked=true;
+      currentColor=color(0, 255, 0);
+      level.respawnPos=respawnPos;
+    }
+    return true;
   }
 
   void draw() {

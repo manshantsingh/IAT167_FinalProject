@@ -12,6 +12,13 @@ class Lifeless {
     draw();
   }
 
+  boolean hit() {
+    return false;
+  }
+  void reset() {
+    //do nothing. it will be overriden later
+  }
+
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
@@ -19,6 +26,17 @@ class Lifeless {
     stroke(0);
     rect(-w/2, -h/2, w, h);
     popMatrix();
+  }
+}
+
+class DangerLifeless extends Lifeless {
+  DangerLifeless(float x, float y, int w_, int h_) {
+    super(x, y, w_, h_);
+  }
+
+  boolean hit() {
+    player.decreaseHealth(PLAYER_MAX_HEALTH);
+    return true;
   }
 }
 

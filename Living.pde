@@ -19,7 +19,8 @@ class Living {
     vel.add(acc);
     pos.add(vel);
     acc.set(0, 0);
-    checkBase();
+    checkBases();
+//    checkRounds();
   }
   void move(PVector force) {
     acc.add(force);
@@ -29,6 +30,9 @@ class Living {
   }
   boolean collision(Lifeless other) {
     return abs(pos.x-other.pos.x)<w/2+other.w/2 && abs(pos.y-other.pos.y)<h/2+other.h/2;
+  }
+  boolean collision(Circular other) {
+    return dist(pos.x, pos.y, other.pos.x, other.pos.y)<w/2+other.diameter/2;
   }
 
   void decreaseHealth(int damage) {
@@ -41,11 +45,12 @@ class Living {
     println("this should be overriden");
   }
 
-  void checkBase() {
+  void checkBases() {
     onBase=false;
     for (int i=0; i<bases.size (); i++) {
       Lifeless d=bases.get(i);
       if (collision(d)) {
+        if (d.hit()) return;
         if (vel.y>0 && d.pos.y-pos.y>d.h/2) {
           pos.y=d.pos.y-d.h/2-h/2;
           vel.y=0;

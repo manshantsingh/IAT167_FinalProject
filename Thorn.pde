@@ -1,4 +1,4 @@
-class Thorn extends Lifeless {
+class Thorn extends DangerLifeless {
   Thorn(float x, float y, int w_) {
     super(x, y, w_, 20);
   }

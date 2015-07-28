@@ -17,7 +17,6 @@ class Player extends Living {
     vel.x*=FRICTION;
     if (alive) {
       checkBounds();
-      checkDanger();
       checkCheckpoints();
     }
     draw();
@@ -44,15 +43,6 @@ class Player extends Living {
     }
     if (collision(finishpoint)) {
       finishpoint.hit();
-    }
-  }
-
-  void checkDanger() {
-    for (int i=0; i<dangers.size (); i++) {
-      Lifeless d=dangers.get(i);
-      if (collision(d)) {
-        decreaseHealth(PLAYER_MAX_HEALTH);
-      }
     }
   }
 

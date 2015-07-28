@@ -1,12 +1,53 @@
 class Slate extends Lifeless {
   Slate(float x, float y) {
-    super(x, y, 200, 20);
+    super(x, y, 250, 20);
   }
 
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
     fill(128);
+    stroke(0);
+    rect(-w/2, -h/2, w, h);
+    popMatrix();
+  }
+}
+
+class FallingSlate extends Slate {
+  boolean isHit;
+  PVector vel, initialPos;
+  FallingSlate(float x, float y) {
+    super(x, y);
+    isHit=false;
+    vel=new PVector();
+    initialPos=pos.get();
+  }
+
+  boolean hit() {
+    isHit=true;
+    return false;
+  }
+
+  void reset() {
+    pos=initialPos.get();
+    vel.set(0, 0);
+    isHit=false;
+  }
+
+  void update() {
+    if (isHit) move();
+    super.update();
+  }
+
+  void move() {
+    pos.add(vel);
+    vel.add(GRAVITY);
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y);
+    fill(128, 64, 0);
     stroke(0);
     rect(-w/2, -h/2, w, h);
     popMatrix();

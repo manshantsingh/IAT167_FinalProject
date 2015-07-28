@@ -4,7 +4,7 @@ class Level {
 
   Level(int num) {
     bases=new ArrayList<Lifeless>();
-    dangers=new ArrayList<Lifeless>();
+    rounders=new ArrayList<Circular>();
     enemies=new ArrayList<Enemy>();
     checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
@@ -16,6 +16,9 @@ class Level {
 
   void respawn() {
     player=new Player(respawnPos.x, respawnPos.y);
+    for (int i=0; i<bases.size (); i++) {
+      bases.get(i).reset();
+    }
   }
 
   void instructions() {
@@ -30,7 +33,7 @@ class Level {
     camera();
     for (int i=0; i<texts.size (); i++) texts.get(i).update();
     for (int i=0; i<bases.size (); i++) bases.get(i).update();
-    for (int i=0; i<dangers.size (); i++) dangers.get(i).update();
+    for (int i=0; i<rounders.size (); i++) rounders.get(i).update();
     for (int i=0; i<enemies.size (); i++) enemies.get(i).update();
     for (int i=0; i<checkpoints.size (); i++) checkpoints.get(i).update();
     finishpoint.update();

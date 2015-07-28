@@ -11,7 +11,7 @@ final float ZOOM_INCREMENT=1.1;
 
 //all lists
 ArrayList<Lifeless> bases;
-ArrayList<Lifeless> dangers;
+ArrayList<Circular> rounders;
 ArrayList<Enemy> enemies;
 ArrayList<Checkpoint> checkpoints;
 ArrayList<Text> texts;
@@ -26,7 +26,7 @@ Finishpoint finishpoint;
 void setup() {
   size(1000, 700);
   textAlign(CENTER, CENTER);
-  currentLevel=1;
+  currentLevel=4;
   level=new Level(currentLevel);
 }
 

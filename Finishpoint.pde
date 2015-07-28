@@ -4,8 +4,9 @@ class Finishpoint extends Lifeless {
     super(x, y, 20, 50);
   }
 
-  void hit() {
+  boolean hit() {
     nextLevel();
+    return true;
   }
 
   void draw() {
