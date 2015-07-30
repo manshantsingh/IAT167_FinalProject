@@ -42,7 +42,7 @@ class Level {
 
   void camera() {
     camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
-    translate(width/2, height/2);
+    translate(500, 450);
     translate(-camera.x, -camera.y);
   }
 }

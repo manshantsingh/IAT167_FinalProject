@@ -48,9 +48,9 @@ void initializeLevel(int num, Level l) {
     bases.add(new Base(1360, height-202, 480, 334));
     bases.add(new FallingSlate(2025, 340));
     bases.add(new Base(2900, 345, 1000, 30));
-    bases.add(new Compresser(0, height-330, height-80, 100, true));
-    bases.add(new Compresser(200, height-330, height-80, 75, false));
-    bases.add(new Compresser(400, height-330, height-80, 100, true));
+    bases.add(new Compresser(0, height-330, height-80, 125, true));
+    bases.add(new Compresser(200, height-330, height-80, 125, false));
+    bases.add(new Compresser(400, height-330, height-80, 125, true));
     enemies.add(new WeakEnemy(3000, 250, 2450, 3200));
     texts.add(new Text("?", 2000, 250, 32, color(0)));
     texts.add(new Text("Think\nMario", 2400, 200, 22, color(0)));
@@ -62,9 +62,9 @@ void initializeLevel(int num, Level l) {
     bases.add(new Base(width/2, height-50, 5000, 100));
     bases.add(new Base(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
     bases.add(new Thorn(width-300, height-100, 100));
-    bases.add(new Compresser(-width/2, height-365, height-115, 100, true));
-    bases.add(new Compresser(-width/2+200, height-365, height-115, 75, false));
-    bases.add(new Compresser(-width/2+400, height-365, height-115, 100, true));
+    bases.add(new Compresser(-width/2, height-365, height-115, 125, true));
+    bases.add(new Compresser(-width/2+200, height-365, height-115, 125, false));
+    bases.add(new Compresser(-width/2+400, height-365, height-115, 125, true));
     enemies.add(new WeakEnemy(width, 50, 0, 2500+width/2-PLAYER_SIZE));
     checkpoints.add(new Checkpoint(-1500, height-125));
     checkpoints.add(new Checkpoint(width*2, height-125));
