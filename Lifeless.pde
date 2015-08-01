@@ -1,9 +1,10 @@
 class Lifeless {
-  PVector pos;
+  PVector pos, initialPos;
   int w, h;
 
   Lifeless(float x, float y, int w_, int h_) {
     pos=new PVector(x, y);
+    initialPos=pos.get();
     w=w_;
     h=h_;
   }
@@ -16,7 +17,7 @@ class Lifeless {
     return false;
   }
   void reset() {
-    //do nothing. it will be overriden later
+    pos=initialPos.get();
   }
 
   void draw() {

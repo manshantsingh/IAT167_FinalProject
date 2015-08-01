@@ -1,6 +1,7 @@
 class Player extends Living {
   float angle;
   int alpha;
+  RePlayer replayer;
 
   Player(float x, float y) {
     super(x, y, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH);
@@ -9,6 +10,7 @@ class Player extends Living {
     camera=camTarget.get();
     alpha=255;
     bounceBack=-0.1;
+    replayer=new RePlayer();
   }
 
   void update() {
@@ -21,6 +23,7 @@ class Player extends Living {
       checkCheckpoints();
     }
     draw();
+    replayer.addFrame(pos, angle, alpha);
   }
 
   void draw() {

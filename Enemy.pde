@@ -1,14 +1,15 @@
 class Enemy extends Living {
   Player target;
-  float angle;
-  int scoreAdded;
-  float rotationValue, positionOffset;
-  int leftBound, rightBound;
+  float angle, rotationValue, positionOffset, initialSpeed;
+  int  leftBound, rightBound, maxHealth;
+  PVector initialPos;
 
-  Enemy(float x, float y, int w_, int h_, int health_, float speed, int scoreAdded_, int leftBound_, int rightBound_) {
+  Enemy(float x, float y, int w_, int h_, int health_, float speed, int leftBound_, int rightBound_) {
     super(x, y, w_, h_, health_);
-    vel.x=speed;
-    scoreAdded=scoreAdded_;
+    maxHealth=health;
+    initialPos=pos.get();
+    initialSpeed=speed;
+    vel.x=initialSpeed;
     angle=0;
     rotationValue=PI/(4*w);
     positionOffset=sin(PI/4)*w-w/2;
@@ -16,6 +17,7 @@ class Enemy extends Living {
     rightBound=rightBound_;
   }
   void update() {
+    if (!alive) return;
     super.update();
     angle+=vel.x*rotationValue;
     checkBound();
@@ -23,9 +25,17 @@ class Enemy extends Living {
     draw();
   }
 
+  void reset() {
+    pos=initialPos.get();
+    vel.set(initialSpeed, 0);
+    acc.set(0, 0);
+    health=maxHealth;
+    alive=true;
+    angle=0;
+  }
+
   void die() {
-    score+=scoreAdded;
-    enemies.remove(this);
+    alive=false;
   }
 
   void checkBound() {
@@ -60,13 +70,13 @@ class Enemy extends Living {
 
 class WeakEnemy extends Enemy {
   WeakEnemy(float x, float y, int leftBound_, int rightBound_) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 1, 3, 10, leftBound_, rightBound_);
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 1, 3, leftBound_, rightBound_);
   }
 }
 
 class StrongEnemy extends Enemy {
   StrongEnemy(float x, float y, int leftBound_, int rightBound_) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 7, 50, leftBound_, rightBound_);
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 7, leftBound_, rightBound_);
   }
 }
 
@@ -74,7 +84,7 @@ class NinjaEnemy extends Enemy {
   int timer;
 
   NinjaEnemy(float x, float y, int leftBound_, int rightBound_) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 5, 100, leftBound_, rightBound_);
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 5, leftBound_, rightBound_);
     timer=NINJA_JUMP_INTERVAL;
   }
 

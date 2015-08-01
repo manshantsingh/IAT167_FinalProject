@@ -1,4 +1,8 @@
-//all constants
+//all state constants
+final int PLAYING=0;
+final int REPLAYING=1;
+
+//all other constants
 final PVector GRAVITY=new PVector(0, 0.4);
 final float PLAYER_JUMP_FORCE=-10;
 final float PLAYER_SPEED=0.3;
@@ -17,23 +21,34 @@ ArrayList<Lifeless> bases;
 ArrayList<Enemy> enemies;
 ArrayList<Checkpoint> checkpoints;
 ArrayList<Text> texts;
+ArrayList<RePlayer> replays;
 
 //all other variables
 Player player;
 PVector camera, camTarget;
-int score, currentLevel;
+int currentLevel, state;
 Level level;
+ReplayLevel replayLevel;
 Finishpoint finishpoint;
 
 void setup() {
   size(1000, 700);
   textAlign(CENTER, CENTER);
   currentLevel=1;
-  level=new Level(currentLevel);
+  level=new Level();
+  //  replayLevel=new ReplayLevel(0);
+  state=PLAYING;
 }
 
 void draw() {
   println(frameRate);
-  level.run();
+  switch(state) {
+  case PLAYING:
+    level.run();
+    break;
+  case REPLAYING:
+    replayLevel.run();
+    break;
+  }
 }
 

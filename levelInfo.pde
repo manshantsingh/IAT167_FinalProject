@@ -1,4 +1,4 @@
-void initializeLevel(int num, Level l) {
+void initializeLevel(int num) {
   switch(num) {
   case 1:
     bases.add(new Base(200, height-50, width/3, 30));
@@ -22,7 +22,7 @@ void initializeLevel(int num, Level l) {
     checkpoints.add(new Checkpoint(1200, height-90));
     bases.add(new Base(2700, height-50, 200, 30));
     finishpoint=new Finishpoint(2700, height-90);
-    texts.add(new Text("Checkpoint", 1200, 2*height/3, 22, color(0)));
+    //    texts.add(new Text("Checkpoint", 1200, 2*height/3, 22, color(0)));
     texts.add(new Text("Wait for\nPlatform", 1500, height-200, 22, color(0)));
     break;
   case 3:
@@ -74,10 +74,5 @@ void initializeLevel(int num, Level l) {
     texts.add(new Text("This is just a testing level\nThis is not actually part of the game\nThe game will keep looping in this level", -1500, 2*height/3, 22, color(0)));
     break;
   }
-}
-
-void nextLevel() {
-  currentLevel++;
-  level=new Level(currentLevel);
 }
 

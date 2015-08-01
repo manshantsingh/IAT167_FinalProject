@@ -1,11 +1,13 @@
 class Compresser extends DangerLifeless {
   int topBound, bottomBound;
   float startAngle, speed;
+  boolean startDown;
 
-  Compresser(float x, int topBound_, int bottomBound_, int dist, boolean startDown) {
+  Compresser(float x, int topBound_, int bottomBound_, int dist, boolean startDown_) {
     super(x, topBound_+dist, 150, 30);
     topBound=topBound_;
     bottomBound=bottomBound_;
+    startDown=startDown_;
     speed=5;
     if (!startDown) speed*=-1;
   }
@@ -13,6 +15,12 @@ class Compresser extends DangerLifeless {
   void update() {
     move();
     super.update();
+  }
+
+  void reset() {
+    super.reset();
+    speed=5;
+    if (!startDown) speed*=-1;
   }
 
   void move() {

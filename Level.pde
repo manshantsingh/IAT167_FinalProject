@@ -1,16 +1,19 @@
 class Level {
-  int num;
   PVector respawnPos;
 
-  Level(int num) {
+  Level() {
     bases=new ArrayList<Lifeless>();
     enemies=new ArrayList<Enemy>();
     checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
-    initializeLevel(num, this);
+    replays=new ArrayList<RePlayer>();
+    initializeLevel(currentLevel);
     respawnPos=checkpoints.get(0).respawnPos.get();
     instructions();
     respawn();
+
+    //temporarily clear checkpoints
+    checkpoints=new ArrayList<Checkpoint>();
   }
 
   void respawn() {

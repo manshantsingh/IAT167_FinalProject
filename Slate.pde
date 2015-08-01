@@ -27,6 +27,11 @@ class InvisibleSlate extends Slate {
     super.update();
   }
 
+  void reset() {
+    visible=false;
+    alpha=0;
+  }
+
   boolean hit(Living l) {
     visible=true;
     return super.hit(l);
@@ -45,12 +50,13 @@ class InvisibleSlate extends Slate {
 class VanishSlate extends Slate {
   int timer, goalAlpha;
   float alpha;
-  boolean baseAble;
+  boolean baseAble, initialVisible;
 
   VanishSlate(float x, float y, boolean visible) {
     super(x, y);
     timer=VANISH_SLATE_TIME;
-    if (visible) {
+    initialVisible=visible;
+    if (initialVisible) {
       alpha=255;
       goalAlpha=255;
       baseAble=true;
@@ -64,6 +70,20 @@ class VanishSlate extends Slate {
   void update() {
     vanish();
     super.update();
+  }
+
+  void reset() {
+    super.reset();
+    timer=VANISH_SLATE_TIME;
+    if (initialVisible) {
+      alpha=255;
+      goalAlpha=255;
+      baseAble=true;
+    } else {
+      alpha=0;
+      goalAlpha=0;
+      baseAble=false;
+    }
   }
 
   void vanish() {
@@ -94,12 +114,11 @@ class VanishSlate extends Slate {
 
 class FallingSlate extends Slate {
   boolean isHit;
-  PVector vel, initialPos;
+  PVector vel;
   FallingSlate(float x, float y) {
     super(x, y);
     isHit=false;
     vel=new PVector();
-    initialPos=pos.get();
   }
 
   boolean hit(Living l) {
@@ -108,7 +127,7 @@ class FallingSlate extends Slate {
   }
 
   void reset() {
-    pos=initialPos.get();
+    super.reset();
     vel.set(0, 0);
     isHit=false;
   }
@@ -149,6 +168,11 @@ class HorizontalSlate extends Slate {
     move();
   }
 
+  void reset() {
+    super.reset();
+    speed=5;
+  }
+
   void move() {
     pos.x+=speed;
     if ((pos.x<=leftBound && speed<0)||(pos.x>=rightBound && speed>0))speed*=-1;
@@ -169,6 +193,11 @@ class VerticalSlate extends Slate {
   void update() {
     super.update();
     move();
+  }
+
+  void reset() {
+    super.reset();
+    speed=5;
   }
 
   void move() {
