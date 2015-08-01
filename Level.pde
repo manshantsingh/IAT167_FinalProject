@@ -40,6 +40,10 @@ class Level {
     if (!player.alive) instructions();
   }
 
+  void HUD() {
+    //gotta work on it
+  }
+
   void camera() {
     camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
     translate(500, 450);

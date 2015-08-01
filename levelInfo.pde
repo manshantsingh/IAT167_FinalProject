@@ -61,11 +61,13 @@ void initializeLevel(int num, Level l) {
   default:
     bases.add(new Base(width/2, height-50, 5000, 100));
     bases.add(new Base(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
+    bases.add(new VanishSlate(width+200, height-250, true));
+    bases.add(new InvisibleSlate(width+600, height-350));
     bases.add(new Thorn(width-300, height-100, 100));
     bases.add(new Compresser(-width/2, height-365, height-115, 125, true));
     bases.add(new Compresser(-width/2+200, height-365, height-115, 125, false));
     bases.add(new Compresser(-width/2+400, height-365, height-115, 125, true));
-    enemies.add(new WeakEnemy(width, 50, 0, 2500+width/2-PLAYER_SIZE));
+    enemies.add(new NinjaEnemy(width, 50, 0, 2500+width/2-PLAYER_SIZE));
     checkpoints.add(new Checkpoint(-1500, height-125));
     checkpoints.add(new Checkpoint(width*2, height-125));
     finishpoint=new Finishpoint(width*2+500, height-125);

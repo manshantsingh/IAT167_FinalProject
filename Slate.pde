@@ -13,6 +13,85 @@ class Slate extends Lifeless {
   }
 }
 
+class InvisibleSlate extends Slate {
+  boolean visible;
+  float alpha;
+  InvisibleSlate(float x, float y) {
+    super(x, y);
+    visible=false;
+    alpha=0;
+  }
+
+  void update() {
+    if (visible) alpha=lerp(alpha, 255, 0.1);
+    super.update();
+  }
+
+  boolean hit(Living l) {
+    visible=true;
+    return super.hit(l);
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y);
+    fill(128, alpha);
+    stroke(0, alpha);
+    rect(-w/2, -h/2, w, h);
+    popMatrix();
+  }
+}
+
+class VanishSlate extends Slate {
+  int timer, goalAlpha;
+  float alpha;
+  boolean baseAble;
+
+  VanishSlate(float x, float y, boolean visible) {
+    super(x, y);
+    timer=VANISH_SLATE_TIME;
+    if (visible) {
+      alpha=255;
+      goalAlpha=255;
+      baseAble=true;
+    } else {
+      alpha=0;
+      goalAlpha=0;
+      baseAble=false;
+    }
+  }
+
+  void update() {
+    vanish();
+    super.update();
+  }
+
+  void vanish() {
+    timer--;
+    if (timer<=0) {
+      goalAlpha=goalAlpha==0?255:0;
+      timer=VANISH_SLATE_TIME;
+    }
+    alpha=lerp(alpha, goalAlpha, 0.1);
+
+    if (baseAble && alpha<200) baseAble=false;
+    else if (!baseAble && alpha>=200) baseAble=true;
+  }
+
+  boolean hit(Living l) {
+    return !baseAble;
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y);
+    fill(128, alpha);
+    stroke(0, alpha);
+    rect(-w/2, -h/2, w, h);
+    popMatrix();
+  }
+}
+
 class FallingSlate extends Slate {
   boolean isHit;
   PVector vel, initialPos;

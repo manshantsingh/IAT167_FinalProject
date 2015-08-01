@@ -64,3 +64,31 @@ class WeakEnemy extends Enemy {
   }
 }
 
+class StrongEnemy extends Enemy {
+  StrongEnemy(float x, float y, int leftBound_, int rightBound_) {
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 7, 50, leftBound_, rightBound_);
+  }
+}
+
+class NinjaEnemy extends Enemy {
+  int timer;
+
+  NinjaEnemy(float x, float y, int leftBound_, int rightBound_) {
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 5, 100, leftBound_, rightBound_);
+    timer=NINJA_JUMP_INTERVAL;
+  }
+
+  void update() {
+    checkTime();
+    super.update();
+  }
+
+  void checkTime() {
+    timer--;
+    if (timer<=0 && onBase) {
+      move(upForce);
+      timer=NINJA_JUMP_INTERVAL;
+    }
+  }
+}
+
