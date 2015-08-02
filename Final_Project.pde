@@ -10,7 +10,9 @@ final int PLAYER_SIZE=60;
 final int DEATH=100;
 final int ENEMY_INVINCIBILITY_TIME=15;
 final int NINJA_JUMP_INTERVAL=120;
-final int VANISH_SLATE_TIME=200;
+final int VANISH_SLATE_TIME=100;
+final int SCREEN_OUT_TIME=30;
+final int TRANSITION_RATE=15;
 final float PLAYER_ROTATION_SPEED=2.0/PLAYER_SIZE;
 final float FRICTION=0.98;
 final float CAMERA_SPEED=0.5;
@@ -40,7 +42,7 @@ void setup() {
 }
 
 void draw() {
-  //  println(frameRate);
+  println(frameRate);
   switch(state) {
   case PLAYING:
     level.run();

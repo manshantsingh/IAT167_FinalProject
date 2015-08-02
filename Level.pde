@@ -1,5 +1,12 @@
+/* The face values
+ 0: playing
+ 1: blackout
+ 2: white back
+ */
+
 class Level {
   PVector respawnPos;
+  int face, alpha;
 
   Level() {
     bases=new ArrayList<Lifeless>();
@@ -9,7 +16,8 @@ class Level {
     replays=new ArrayList<RePlayer>();
     initializeLevel(currentLevel, false);
     respawnPos=checkpoints.get(0).respawnPos.get();
-    instructions();
+    face=2;
+    alpha=255;
     respawn();
 
     //temporarily clear checkpoints
@@ -22,10 +30,32 @@ class Level {
     for (int i=0; i<enemies.size (); i++) enemies.get(i).reset();
   }
 
-  void instructions() {
-    fill(0, 150, 0);
-    textSize(48);
-    text("Press R to respawn", width/2, 200);
+  void faceManager() {
+    switch(face) {
+    case 1:
+      alpha+=TRANSITION_RATE;
+      if (alpha>=255) {
+        face=2;
+        alpha=255;
+        respawn();
+      }
+      fill(0, alpha);
+      noStroke();
+      rect(0, 0, width, height);
+      break;
+    case 2:
+      alpha-=TRANSITION_RATE;
+      if (alpha<=0) {
+        face=0;
+        alpha=0;
+      }
+      fill(0, alpha);
+      noStroke();
+      rect(0, 0, width, height);
+      break;
+    default:
+      break;
+    }
   }
 
   void run() {
@@ -39,7 +69,8 @@ class Level {
     finishpoint.update();
     player.update();
     popMatrix();
-    if (!player.alive) instructions();
+    faceManager();
+    HUD();
   }
 
   void HUD() {

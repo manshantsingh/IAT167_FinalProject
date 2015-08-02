@@ -11,7 +11,6 @@ void keyPressed() {
   } else if (key=='w'||key=='W') up=true;
   else if (key=='a'||key=='A') left=true;
   else if (key=='d'||key=='D') right=true;
-  else if ((key=='r'||key=='R') && state==PLAYING && !player.alive) level.respawn();
   else if (key=='\n' && state==REPLAYING) replayLevel.nextLevel();
 }
 

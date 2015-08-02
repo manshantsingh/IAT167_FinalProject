@@ -49,6 +49,7 @@ class Enemy extends Living {
     else if (player.alive && collision(player)) {
       if (pos.y-player.pos.y>h/2) {
         decreaseHealth(1);
+        vel.y=player.vel.y;
         player.vel.y*=-1;
       } else {
         player.decreaseHealth(1);
@@ -94,6 +95,11 @@ class NinjaEnemy extends Enemy {
   void update() {
     checkTime();
     super.update();
+  }
+
+  void reset() {
+    super.reset();
+    timer=NINJA_JUMP_INTERVAL;
   }
 
   void checkTime() {

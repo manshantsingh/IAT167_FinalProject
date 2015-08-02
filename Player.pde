@@ -1,6 +1,6 @@
 class Player extends Living {
   float angle;
-  int alpha;
+  int alpha, timer;
   RePlayer replayer;
 
   Player(float x, float y) {
@@ -11,10 +11,12 @@ class Player extends Living {
     alpha=255;
     bounceBack=-0.1;
     replayer=new RePlayer();
+    timer=SCREEN_OUT_TIME;
   }
 
   void update() {
     if (alive) controls();
+    else isDead();
     super.update();
     angle+=vel.x*PLAYER_ROTATION_SPEED;
     vel.x*=FRICTION;
@@ -36,6 +38,11 @@ class Player extends Living {
     ellipse(0, 0, w, h);
     line(-w/2, 0, w/2, 0);
     popMatrix();
+  }
+
+  void isDead() {
+    timer--;
+    if (timer<=0) level.face=1;
   }
 
   void checkCheckpoints() {
