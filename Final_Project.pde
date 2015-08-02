@@ -36,7 +36,6 @@ void setup() {
   textAlign(CENTER, CENTER);
   currentLevel=1;
   level=new Level();
-  //  replayLevel=new ReplayLevel(0);
   state=PLAYING;
 }
 

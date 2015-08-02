@@ -18,9 +18,8 @@ class Level {
 
   void respawn() {
     player=new Player(respawnPos.x, respawnPos.y);
-    for (int i=0; i<bases.size (); i++) {
-      bases.get(i).reset();
-    }
+    for (int i=0; i<bases.size (); i++) bases.get(i).reset();
+    for (int i=0; i<enemies.size (); i++) enemies.get(i).reset();
   }
 
   void instructions() {

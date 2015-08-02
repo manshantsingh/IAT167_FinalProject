@@ -49,20 +49,19 @@ class Living {
       Lifeless d=bases.get(i);
       if (collision(d)) {
         if (d.hit(this)) return;
-        if (vel.y>0 && d.pos.y-pos.y>d.h/2) {
-          pos.y=d.pos.y-d.h/2-h/2;
-          vel.y=0;
-          onBase=true;
-        } else if (vel.y<0  && pos.y-d.pos.y>d.h/2) {
-          pos.y=d.pos.y+d.h/2+h/2;
-          vel.y*=-1;
-        }
         if (vel.x<0 && pos.x-d.pos.x>d.w/2) {
           pos.x=d.pos.x+d.w/2+w/2;
           vel.x*=bounceBack;
         } else if (vel.x>0 && d.pos.x-pos.x>d.w/2) {
           pos.x=d.pos.x-d.w/2-w/2;
           vel.x*=bounceBack;
+        } else if (vel.y>0 && d.pos.y-pos.y>d.h/2) {
+          pos.y=d.pos.y-d.h/2-h/2;
+          vel.y=0;
+          onBase=true;
+        } else if (vel.y<0  && pos.y-d.pos.y>d.h/2) {
+          pos.y=d.pos.y+d.h/2+h/2;
+          vel.y*=-1;
         }
       }
     }
