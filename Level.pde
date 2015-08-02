@@ -7,7 +7,7 @@ class Level {
     checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
     replays=new ArrayList<RePlayer>();
-    initializeLevel(currentLevel);
+    initializeLevel(currentLevel, false);
     respawnPos=checkpoints.get(0).respawnPos.get();
     instructions();
     respawn();

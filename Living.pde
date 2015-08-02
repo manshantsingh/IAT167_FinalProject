@@ -1,8 +1,7 @@
 class Living {
   PVector pos, vel, acc;
   int w, h, health;
-  boolean alive;
-  boolean onBase;
+  boolean alive, onBase;
   float bounceBack=-1;
 
   Living(float x, float y, int w_, int h_, int health_) {
@@ -35,12 +34,11 @@ class Living {
 
   void decreaseHealth(int damage) {
     health-=damage;
-    println(this+" just lost "+damage+" health");
     if (health<=0) die();
   }
 
   void die() {
-    println("this should be overriden");
+    alive=false;
   }
 
   void checkBases() {

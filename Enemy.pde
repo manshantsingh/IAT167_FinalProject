@@ -1,7 +1,7 @@
 class Enemy extends Living {
   Player target;
   float angle, rotationValue, positionOffset, initialSpeed;
-  int  leftBound, rightBound, maxHealth;
+  int  leftBound, rightBound, maxHealth, invincibility;
   PVector initialPos;
 
   Enemy(float x, float y, int w_, int h_, int health_, float speed, int leftBound_, int rightBound_) {
@@ -15,6 +15,7 @@ class Enemy extends Living {
     positionOffset=sin(PI/4)*w-w/2;
     leftBound=leftBound_;
     rightBound=rightBound_;
+    invincibility=0;
   }
   void update() {
     if (!alive) return;
@@ -34,16 +35,18 @@ class Enemy extends Living {
     angle=0;
   }
 
-  void die() {
-    alive=false;
-  }
-
   void checkBound() {
     if ((vel.x<0 && pos.x<leftBound)||(vel.x>0 && pos.x>rightBound)) vel.x*=-1;
   }
 
+  void decreaseHealth(int damage) {
+    super.decreaseHealth(damage);
+    invincibility=ENEMY_INVINCIBILITY_TIME;
+  }
+
   void hitPlayer() {
-    if (player.alive && collision(player)) {
+    if (invincibility>0) invincibility--;
+    else if (player.alive && collision(player)) {
       if (pos.y-player.pos.y>h/2) {
         decreaseHealth(1);
         player.vel.y*=-1;

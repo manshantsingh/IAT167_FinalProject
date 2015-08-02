@@ -14,11 +14,12 @@ class Slate extends Lifeless {
 }
 
 class InvisibleSlate extends Slate {
-  boolean visible;
+  boolean visible, isReplay;
   float alpha;
-  InvisibleSlate(float x, float y) {
+  InvisibleSlate(float x, float y, boolean isReplay_) {
     super(x, y);
-    visible=false;
+    isReplay=isReplay_;
+    visible=isReplay;
     alpha=0;
   }
 
@@ -28,7 +29,7 @@ class InvisibleSlate extends Slate {
   }
 
   void reset() {
-    visible=false;
+    visible=isReplay;
     alpha=0;
   }
 

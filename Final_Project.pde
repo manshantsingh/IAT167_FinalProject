@@ -7,8 +7,8 @@ final PVector GRAVITY=new PVector(0, 0.4);
 final float PLAYER_JUMP_FORCE=-10;
 final float PLAYER_SPEED=0.3;
 final int PLAYER_SIZE=60;
-final int PLAYER_MAX_HEALTH=3;
 final int DEATH=100;
+final int ENEMY_INVINCIBILITY_TIME=15;
 final int NINJA_JUMP_INTERVAL=120;
 final int VANISH_SLATE_TIME=200;
 final float PLAYER_ROTATION_SPEED=2.0/PLAYER_SIZE;
@@ -40,7 +40,7 @@ void setup() {
 }
 
 void draw() {
-  println(frameRate);
+  //  println(frameRate);
   switch(state) {
   case PLAYING:
     level.run();

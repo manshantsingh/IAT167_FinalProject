@@ -4,7 +4,7 @@ class Player extends Living {
   RePlayer replayer;
 
   Player(float x, float y) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, PLAYER_MAX_HEALTH);
+    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 1);
     angle=0;
     camTarget=pos;
     camera=camTarget.get();
@@ -55,9 +55,9 @@ class Player extends Living {
   }
 
   void die() {
+    super.die();
     camTarget=pos.get();
     alpha=0;
-    alive=false;
   }
 
   void controls() {
