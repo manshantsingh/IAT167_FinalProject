@@ -14,12 +14,11 @@ class Slate extends Lifeless {
 }
 
 class InvisibleSlate extends Slate {
-  boolean visible, isReplay;
+  boolean visible;
   float alpha;
-  InvisibleSlate(float x, float y, boolean isReplay_) {
+  InvisibleSlate(float x, float y) {
     super(x, y);
-    isReplay=isReplay_;
-    visible=isReplay;
+    visible=isReplay();
     alpha=0;
   }
 
@@ -28,8 +27,12 @@ class InvisibleSlate extends Slate {
     super.update();
   }
 
+  boolean isReplay() {
+    return state==REPLAYING;
+  }
+
   void reset() {
-    visible=isReplay;
+    visible=isReplay();
     alpha=0;
   }
 
@@ -41,7 +44,7 @@ class InvisibleSlate extends Slate {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(128, alpha);
+    fill(188, 51, 164, alpha);
     stroke(0, alpha);
     rect(-w/2, -h/2, w, h);
     popMatrix();
@@ -95,8 +98,8 @@ class VanishSlate extends Slate {
     }
     alpha=lerp(alpha, goalAlpha, 0.1);
 
-    if (baseAble && alpha<200) baseAble=false;
-    else if (!baseAble && alpha>=200) baseAble=true;
+    if (baseAble && alpha<128) baseAble=false;
+    else if (!baseAble && alpha>=128) baseAble=true;
   }
 
   boolean hit(Living l) {
@@ -106,7 +109,7 @@ class VanishSlate extends Slate {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(128, alpha);
+    fill(42, 148, 208, alpha);
     stroke(0, alpha);
     rect(-w/2, -h/2, w, h);
     popMatrix();

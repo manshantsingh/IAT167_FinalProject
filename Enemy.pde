@@ -47,7 +47,7 @@ class Enemy extends Living {
   void hitPlayer() {
     if (invincibility>0) invincibility--;
     else if (player.alive && collision(player)) {
-      if (pos.y-player.pos.y>h/2) {
+      if (pos.y-player.pos.y>h/2 && vel.y<player.vel.y) {
         decreaseHealth(1);
         vel.y=player.vel.y;
         player.vel.y*=-1;

@@ -68,13 +68,13 @@ void initializeLevel(int num, boolean isReplay) {
   case 5:
     bases.add(new Base(0, height-50, 500, 30));
     bases.add(new Base(0, height-235, 30, 350));
-    bases.add(new InvisibleSlate(-600, 550, isReplay));
-    bases.add(new InvisibleSlate(-1100, 450, isReplay));
-    bases.add(new InvisibleSlate(-650, 350, isReplay));
-    bases.add(new InvisibleSlate(-200, 250, isReplay));
-    bases.add(new InvisibleSlate(600, 550, isReplay));
-    bases.add(new InvisibleSlate(1100, 450, isReplay));
-    bases.add(new InvisibleSlate(1600, 350, isReplay));
+    bases.add(new InvisibleSlate(-600, 550));
+    bases.add(new InvisibleSlate(-1100, 450));
+    bases.add(new InvisibleSlate(-650, 350));
+    bases.add(new InvisibleSlate(-200, 250));
+    bases.add(new InvisibleSlate(600, 550));
+    bases.add(new InvisibleSlate(1100, 450));
+    bases.add(new InvisibleSlate(1600, 350));
     bases.add(new Base(2475, 255, 1000, 30));
     bases.add(new Base(3475, 255, 300, 30));
     enemies.add(new NinjaEnemy(2500, 150, 2025, 2925));
@@ -84,11 +84,38 @@ void initializeLevel(int num, boolean isReplay) {
     if (isReplay) return;
     texts.add(new Text("Naughty Ninja", 1770, 200, 22, color(0)));
     break;
+  case 6:
+    bases.add(new Base(0, height-50, 500, 30));
+    bases.add(new VanishSlate(-400, 550, true));
+    bases.add(new VanishSlate(0, 450, false));
+    bases.add(new VanishSlate(400, 350, true));
+    bases.add(new VanishSlate(0, 250, false));
+    bases.add(new VanishSlate(-400, 150, true));
+    bases.add(new Base(0, 50, 350, 20)); //keep this slate
+    bases.add(new VanishSlate(0, -50, true));
+    bases.add(new VanishSlate(0, -150, false));
+    bases.add(new VanishSlate(0, -250, true));
+    bases.add(new Base(-1250, -300, 1950, 30));
+    bases.add(new VanishSlate(-2400, -400, true));
+    bases.add(new Slate(-2800, -500));
+    bases.add(new FallingSlate(-3400, -500));
+    bases.add(new FallingSlate(-4000, -500));
+    bases.add(new FallingSlate(-4600, -500));
+    bases.add(new Slate(-5200, -500));
+    bases.add(new Base(-6300, -500, 1250, 30));
+    bases.add(new Base(-7400, -500, 300, 30));
+    enemies.add(new StrongEnemy(-1900, -500, -2200, -300));
+    enemies.add(new NinjaEnemy(-6000, -700, -6850, -5800));
+    checkpoints.add(new Checkpoint(0, height-90));
+    checkpoints.add(new Checkpoint(-2000, -340));
+    checkpoints.add(new Checkpoint(-2300, -440));
+    finishpoint=new Finishpoint(-7400, -540);
+    break;
   default:
     bases.add(new Base(width/2, height-50, 5000, 100));
     bases.add(new Base(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
     bases.add(new VanishSlate(width+200, height-250, true));
-    bases.add(new InvisibleSlate(width+600, height-350, isReplay));
+    bases.add(new InvisibleSlate(width+600, height-350));
     bases.add(new Thorn(width-300, height-100, 100));
     bases.add(new Compresser(-width/2, height-365, height-115, 125, true));
     bases.add(new Compresser(-width/2+200, height-365, height-115, 125, false));

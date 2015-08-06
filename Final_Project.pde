@@ -42,7 +42,7 @@ void setup() {
 }
 
 void draw() {
-  println(frameRate);
+  //  println(frameRate);
   switch(state) {
   case PLAYING:
     level.run();

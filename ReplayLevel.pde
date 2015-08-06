@@ -43,9 +43,9 @@ class ReplayLevel {
   }
 
   void nextLevel() {
+    state=PLAYING;
     currentLevel++;
     level=new Level();
-    state=PLAYING;
   }
 }
 
