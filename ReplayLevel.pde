@@ -12,7 +12,7 @@ class ReplayLevel {
     currentFrame=0;
     lastRePlayer=replays.get(replays.size()-1);
     texts.add(new Text("Replay", width/2, 100, 50, color(200, 0, 0)));
-    texts.add(new Text("Press ENTER to continue", width/2, height-100, 26, color(200, 0, 0)));
+    texts.add(new Text("Press ENTER to continue\nOr Press SHIFT to play this level again", width/2, height-100, 26, color(200, 0, 0)));
   }
 
   void run() {
@@ -43,8 +43,11 @@ class ReplayLevel {
   }
 
   void nextLevel() {
-    state=PLAYING;
     currentLevel++;
+    reloadLevel();
+  }
+  void reloadLevel() {
+    state=PLAYING;
     level=new Level();
   }
 }

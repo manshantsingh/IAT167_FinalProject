@@ -105,7 +105,7 @@ void initializeLevel(int num, boolean isReplay) {
     bases.add(new Base(-6300, -500, 1250, 30));
     bases.add(new Base(-7400, -500, 300, 30));
     enemies.add(new StrongEnemy(-1900, -500, -2200, -300));
-    enemies.add(new NinjaEnemy(-6000, -700, -6850, -5800));
+    enemies.add(new NinjaEnemy(-6000, -700, -6900, -5690));
     checkpoints.add(new Checkpoint(0, height-90));
     checkpoints.add(new Checkpoint(-2000, -340));
     checkpoints.add(new Checkpoint(-2300, -440));

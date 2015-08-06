@@ -8,6 +8,7 @@ void keyPressed() {
     if (keyCode==UP) up=true;
     else if (keyCode==LEFT) left=true;
     else if (keyCode==RIGHT) right=true;
+    else if(keyCode==SHIFT && state==REPLAYING) replayLevel.reloadLevel();
   } else if (key=='w'||key=='W') up=true;
   else if (key=='a'||key=='A') left=true;
   else if (key=='d'||key=='D') right=true;
