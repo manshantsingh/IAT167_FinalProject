@@ -8,11 +8,12 @@ void keyPressed() {
     if (keyCode==UP) up=true;
     else if (keyCode==LEFT) left=true;
     else if (keyCode==RIGHT) right=true;
-    else if(keyCode==SHIFT && state==REPLAYING) replayLevel.reloadLevel();
+    else if (keyCode==SHIFT && state==REPLAYING) loadLevel();
   } else if (key=='w'||key=='W') up=true;
   else if (key=='a'||key=='A') left=true;
   else if (key=='d'||key=='D') right=true;
   else if (key=='\n' && state==REPLAYING) replayLevel.nextLevel();
+  else if ((key=='p'||key=='P') && state==PLAYING) level.pausePressed();
 }
 
 void keyReleased() {
@@ -30,5 +31,17 @@ void mousePressed() {
   mx=mouseX+(int)camera.x-width/2;
   my=mouseY+(int)camera.y-height/2;
   println("mouse coordinates: "+mx+", "+my);
+  if (mouseButton==LEFT) {
+    switch(state) {
+    case MAIN_MENU:
+      if (menuTextStart.mouseCollision()) {
+        state=PLAYING;
+        currentLevel=1;
+        loadLevel();
+      }
+      else if(menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
+      break;
+    }
+  }
 }
 

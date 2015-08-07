@@ -44,11 +44,7 @@ class ReplayLevel {
 
   void nextLevel() {
     currentLevel++;
-    reloadLevel();
-  }
-  void reloadLevel() {
-    state=PLAYING;
-    level=new Level();
+    loadLevel();
   }
 }
 

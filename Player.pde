@@ -35,8 +35,9 @@ class Player extends Living {
     translate(pos.x, pos.y);
     rotate(angle);
     fill(255, 0, 0, alpha);
-    ellipse(0, 0, w, h);
-    line(-w/2, 0, w/2, 0);
+    image(imgPlayer,-w/2,-h/2);
+//    ellipse(0, 0, w, h);
+//    line(-w/2, 0, w/2, 0);
     popMatrix();
   }
 

@@ -7,6 +7,7 @@
 class Level {
   PVector respawnPos;
   int face, alpha;
+  boolean paused;
 
   Level() {
     bases=new ArrayList<Lifeless>();
@@ -14,14 +15,15 @@ class Level {
     checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
     replays=new ArrayList<RePlayer>();
-    initializeLevel(currentLevel, false);
+    initializeLevel(false);
     respawnPos=checkpoints.get(0).respawnPos.get();
     face=2;
     alpha=255;
+    paused=false;
     respawn();
 
     //temporarily clear checkpoints
-    checkpoints=new ArrayList<Checkpoint>();
+//    checkpoints=new ArrayList<Checkpoint>();
   }
 
   void respawn() {
@@ -59,6 +61,8 @@ class Level {
   }
 
   void run() {
+    if (paused) return;
+    
     background(255);
     pushMatrix();
     camera();
@@ -75,6 +79,19 @@ class Level {
 
   void HUD() {
     //gotta work on it
+  }
+
+  void pausePressed() {
+    paused=!paused;
+    if(paused) showPaused();
+  }
+
+  void showPaused() {
+    fill(255, 128);
+    rect(0, 0, width, height);
+    fill(0);
+    textSize(50);
+    text("Paused", width/2, height/2);
   }
 
   void camera() {

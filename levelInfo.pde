@@ -1,5 +1,5 @@
-void initializeLevel(int num, boolean isReplay) {
-  switch(num) {
+void initializeLevel(boolean isReplay) {
+  switch(currentLevel) {
   case 1:
     bases.add(new Base(200, height-50, width/3, 30));
     bases.add(new Base(3*width/4+50, height-50, width/2+100, 30));
@@ -128,5 +128,18 @@ void initializeLevel(int num, boolean isReplay) {
     texts.add(new Text("This is just a testing level\nThis is not actually part of the game\nThe game will keep looping in this level", -1500, 2*height/3, 22, color(0)));
     break;
   }
+}
+
+void loadLevel() {
+  state=PLAYING;
+  if (currentLevel>latestAccessableLevel) latestAccessableLevel=currentLevel;
+  if(latestAccessableLevel>=BEAT_ALL_LEVELS) {
+    state=MAIN_MENU;
+    return;
+  }
+  level=new Level();
+}
+
+void updateLatestAccessableLevel() {
 }
 
