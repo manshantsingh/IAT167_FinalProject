@@ -58,12 +58,14 @@ class Player extends Living {
     super.die();
     transitionTime=true;
     camTarget=pos.get();
+    soundDie.trigger();
   }
 
   void fellDown() {
     isFalling=true;
     transitionTime=true;
     camTarget=pos.get();
+    soundFalling.trigger();
   }
 
   void controls() {
@@ -71,6 +73,7 @@ class Player extends Living {
     if (right) move(rightForce);
     if (up && onBase) {
       move(upForce);
+      soundBounce.trigger();
     }
   }
 

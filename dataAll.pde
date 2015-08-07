@@ -1,5 +1,9 @@
 PImage imgPlayer, imgFallingPlayer, imgAngel, imgWeakEnemy, imgStrongEnemy, imgNinjaEnemy;
 
+Minim minim;
+AudioPlayer musicMenu, musicPlaying;
+AudioSample soundFalling, soundDie, soundBounce, soundDamageEnemy, soundKillEnemy, soundNinjaDamage, soundNinjaKill, soundFinish;
+
 void dataInitialize() {
   imgPlayer=loadImage("player.png");
   imgPlayer.resize(60, 60);
@@ -13,5 +17,20 @@ void dataInitialize() {
   imgStrongEnemy.resize(68, 64);
   imgNinjaEnemy=loadImage("ninjaEnemy.png");
   imgNinjaEnemy.resize(96, 76);
+
+  minim=new Minim(this);
+  musicMenu=minim.loadFile("mainMenu.wav");
+  musicPlaying=minim.loadFile("playing.wav");
+
+  soundFalling=minim.loadSample("falling.wav");
+  soundDie=minim.loadSample("die.wav");
+  soundBounce=minim.loadSample("bounce.wav");
+  soundDamageEnemy=minim.loadSample("damageEnemy.wav");
+  soundKillEnemy=minim.loadSample("killEnemy.wav");
+  soundNinjaDamage=minim.loadSample("ninjaDamage.wav");
+  soundNinjaKill=minim.loadSample("ninjaKill.wav");
+  soundFinish=minim.loadSample("finish.wav");
+
+  musicMenu.play();
 }
 

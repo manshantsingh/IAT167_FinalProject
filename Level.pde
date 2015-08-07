@@ -22,6 +22,10 @@ class Level {
     paused=false;
     respawn();
 
+    musicMenu.pause();
+    musicPlaying.rewind();
+    musicPlaying.play();
+
     //temporarily clear checkpoints
     checkpoints=new ArrayList<Checkpoint>();
   }
@@ -61,7 +65,10 @@ class Level {
   }
 
   void run() {
-    if (paused) return;
+    if (paused) {
+      pauseMenu();
+      return;
+    }
 
     background(255);
     pushMatrix();
@@ -77,21 +84,31 @@ class Level {
     HUD();
   }
 
-  void HUD() {
-    //gotta work on it
-  }
-
   void pausePressed() {
     paused=!paused;
     if (paused) showPaused();
   }
 
+  void pauseMenu() {
+    staticTxtPaused.update();
+    txtResume.update();
+    txtMainMenu.update();
+  }
+
+  void clicked() {
+    if (paused) {
+      if (txtResume.mouseCollision()) pausePressed();
+      else if (txtMainMenu.mouseCollision()) playingToMainMenu();
+    }
+  }
+
   void showPaused() {
-    fill(255, 128);
+    fill(255, 200);
     rect(0, 0, width, height);
-    fill(0);
-    textSize(50);
-    text("Paused", width/2, height/2);
+  }
+
+  void HUD() {
+    //still gotta do this
   }
 }
 

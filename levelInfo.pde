@@ -24,6 +24,7 @@ void initializeLevel(boolean isReplay) {
     bases.add(new Base(2700, height-50, 200, 30));
     finishpoint=new Finishpoint(2700, height-90);
     if (isReplay) return;
+    texts.add(new Text("Press P to pause\nif needed", 100, 2*height/3, 22, color(0)));
     texts.add(new Text("Wait for\nPlatform", 1500, height-200, 22, color(0)));
     break;
   case 3:
@@ -132,8 +133,8 @@ void initializeLevel(boolean isReplay) {
 void loadLevel() {
   state=PLAYING;
   if (currentLevel>latestAccessableLevel) latestAccessableLevel=currentLevel;
-  if (latestAccessableLevel>=BEAT_ALL_LEVELS) {
-    state=MAIN_MENU;
+  if (currentLevel>=BEAT_ALL_LEVELS) {
+    playingToMainMenu();
     return;
   }
   level=new Level();

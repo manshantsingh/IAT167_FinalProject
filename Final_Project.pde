@@ -1,3 +1,5 @@
+import ddf.minim.*;
+
 //all state constants
 final int PLAYING=0;
 final int REPLAYING=1;
@@ -35,7 +37,6 @@ int currentLevel, state, latestAccessableLevel;
 Level level;
 ReplayLevel replayLevel;
 Finishpoint finishpoint;
-ColliderText menuTextStart, menuTextSelectLevel;
 
 void setup() {
   size(1000, 700);
@@ -65,11 +66,9 @@ void draw() {
 void initialize() {
   dataInitialize();
   textAlign(CENTER, CENTER);
+  textInitialize();
   currentLevel=1;
   latestAccessableLevel=0;
-  level=new Level();
   state=MAIN_MENU;
-  menuTextStart=new ColliderText("START", width/2, 450, 50, color(255, 0, 0), color(0, 255, 0));
-  menuTextSelectLevel=new ColliderText("Level Select", width/2, 550, 50, color(255, 0, 0), color(0, 255, 0));
 }
 

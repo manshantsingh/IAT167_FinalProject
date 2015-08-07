@@ -13,6 +13,7 @@ class ReplayLevel {
     lastRePlayer=replays.get(replays.size()-1);
     texts.add(new Text("Replay", width/2, 100, 50, color(200, 0, 0)));
     texts.add(new Text("Press ENTER to continue\nOr Press SHIFT to play this level again", width/2, height-100, 26, color(200, 0, 0)));
+    musicPlaying.pause();
   }
 
   void run() {

@@ -28,9 +28,6 @@ void keyReleased() {
 
 int mx, my;
 void mousePressed() {
-  mx=mouseX+(int)camera.x-width/2;
-  my=mouseY+(int)camera.y-height/2;
-  println("mouse coordinates: "+mx+", "+my);
   if (mouseButton==LEFT) {
     switch(state) {
     case MAIN_MENU:
@@ -40,7 +37,30 @@ void mousePressed() {
         loadLevel();
       } else if (menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
       break;
+    case SELECT_WHAT_LEVEL:
+      if (txtBackToMenu.mouseCollision()) state=MAIN_MENU;
+      else for (int i=0; i<txtLevels.length; i++) {
+        if (txtLevels[i].mouseCollision()) {
+          state=PLAYING;
+          currentLevel=i+1;
+          loadLevel();
+        }
+      }
+      break;
+    case PLAYING:
+      mx=mouseX+(int)camera.x-width/2;
+      my=mouseY+(int)camera.y-height/2;
+      println("mouse coordinates: "+mx+", "+my);
+      level.clicked();
+      break;
     }
   }
+}
+
+void playingToMainMenu() {
+  musicPlaying.pause();
+  musicMenu.rewind();
+  musicMenu.play();
+  state=MAIN_MENU;
 }
 

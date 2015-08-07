@@ -5,6 +5,7 @@ class Finishpoint extends Lifeless {
   }
 
   boolean hit() {
+    soundFinish.trigger();
     showReplay();
     return true;
   }
