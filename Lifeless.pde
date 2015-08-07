@@ -36,7 +36,7 @@ class DangerLifeless extends Lifeless {
   }
 
   boolean hit(Living l) {
-    if (l.alive) l.decreaseHealth(DEATH);
+    if (l.alive) l.die();
     return true;
   }
 }

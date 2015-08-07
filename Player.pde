@@ -1,47 +1,39 @@
 class Player extends Living {
   float angle;
-  int alpha, timer;
+  int timer;
   RePlayer replayer;
+  boolean transitionTime, isFalling;
 
   Player(float x, float y) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 1);
+    super(x, y, 60, 60);
     angle=0;
     camTarget=pos;
     camera=camTarget.get();
-    alpha=255;
+    transitionTime=false;
+    isFalling=false;
     bounceBack=-0.1;
     replayer=new RePlayer();
     timer=SCREEN_OUT_TIME;
   }
 
   void update() {
-    if (alive) controls();
-    else isDead();
-    super.update();
-    angle+=vel.x*PLAYER_ROTATION_SPEED;
-    vel.x*=FRICTION;
-    if (alive) {
+    if (transitionTime) transitionTimer();
+    else controls();
+    if (isFalling) super.update();
+    else if (alive) {
+      super.update();
+      angle+=vel.x*PLAYER_ROTATION_SPEED;
+      vel.x*=FRICTION;
       checkBounds();
       checkCheckpoints();
+    } else {
+      pos.y-=ANGEL_RISE_SPEED;
     }
+    replayer.addFrame(pos, angle, isFalling?1:alive?0:2);
     draw();
-    replayer.addFrame(pos, angle, alpha);
   }
 
-  void draw() {
-    pushMatrix();
-    strokeWeight(3);
-    stroke(0);
-    translate(pos.x, pos.y);
-    rotate(angle);
-    fill(255, 0, 0, alpha);
-    image(imgPlayer,-w/2,-h/2);
-//    ellipse(0, 0, w, h);
-//    line(-w/2, 0, w/2, 0);
-    popMatrix();
-  }
-
-  void isDead() {
+  void transitionTimer() {
     timer--;
     if (timer<=0) level.face=1;
   }
@@ -59,13 +51,19 @@ class Player extends Living {
   }
 
   void checkBounds() {
-    if (pos.y>height) die();
+    if (pos.y>height) fellDown();
   }
 
   void die() {
     super.die();
+    transitionTime=true;
     camTarget=pos.get();
-    alpha=0;
+  }
+
+  void fellDown() {
+    isFalling=true;
+    transitionTime=true;
+    camTarget=pos.get();
   }
 
   void controls() {
@@ -74,6 +72,17 @@ class Player extends Living {
     if (up && onBase) {
       move(upForce);
     }
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y);
+    if (isFalling) image(imgFallingPlayer, -30, -30);
+    else if (alive) {
+      rotate(angle);
+      image(imgPlayer, -30, -30);
+    } else image(imgAngel, -41, -47);
+    popMatrix();
   }
 }
 

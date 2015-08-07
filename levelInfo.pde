@@ -23,7 +23,6 @@ void initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(1200, height-90));
     bases.add(new Base(2700, height-50, 200, 30));
     finishpoint=new Finishpoint(2700, height-90);
-    //    texts.add(new Text("Checkpoint", 1200, 2*height/3, 22, color(0)));
     if (isReplay) return;
     texts.add(new Text("Wait for\nPlatform", 1500, height-200, 22, color(0)));
     break;
@@ -108,19 +107,19 @@ void initializeLevel(boolean isReplay) {
     enemies.add(new NinjaEnemy(-6000, -700, -6900, -5690));
     checkpoints.add(new Checkpoint(0, height-90));
     checkpoints.add(new Checkpoint(-2000, -340));
-    checkpoints.add(new Checkpoint(-2300, -440));
+    checkpoints.add(new Checkpoint(-5200, -540));
     finishpoint=new Finishpoint(-7400, -540);
     break;
   default:
     bases.add(new Base(width/2, height-50, 5000, 100));
-    bases.add(new Base(width, height-2*PLAYER_SIZE, PLAYER_SIZE, PLAYER_SIZE));
+    bases.add(new Base(width, height-2*60, 60, 60));
     bases.add(new VanishSlate(width+200, height-250, true));
     bases.add(new InvisibleSlate(width+600, height-350));
     bases.add(new Thorn(width-300, height-100, 100));
     bases.add(new Compresser(-width/2, height-365, height-115, 125, true));
     bases.add(new Compresser(-width/2+200, height-365, height-115, 125, false));
     bases.add(new Compresser(-width/2+400, height-365, height-115, 125, true));
-    enemies.add(new NinjaEnemy(width, 50, 0, 2500+width/2-PLAYER_SIZE));
+    enemies.add(new NinjaEnemy(width, 50, 0, 2500+width/2-60));
     checkpoints.add(new Checkpoint(-1500, height-125));
     checkpoints.add(new Checkpoint(width*2, height-125));
     finishpoint=new Finishpoint(width*2+500, height-125);
@@ -133,13 +132,16 @@ void initializeLevel(boolean isReplay) {
 void loadLevel() {
   state=PLAYING;
   if (currentLevel>latestAccessableLevel) latestAccessableLevel=currentLevel;
-  if(latestAccessableLevel>=BEAT_ALL_LEVELS) {
+  if (latestAccessableLevel>=BEAT_ALL_LEVELS) {
     state=MAIN_MENU;
     return;
   }
   level=new Level();
 }
 
-void updateLatestAccessableLevel() {
+void camera() {
+  camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
+  translate(500, 400);
+  translate(-camera.x, -camera.y);
 }
 

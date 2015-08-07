@@ -4,13 +4,12 @@ class Living {
   boolean alive, onBase;
   float bounceBack=-1;
 
-  Living(float x, float y, int w_, int h_, int health_) {
+  Living(float x, float y, int w_, int h_) {
     pos=new PVector(x, y);
     vel=new PVector();
     acc=new PVector();
     w=w_;
     h=h_;
-    health=health_;
     alive=true;
   }
 
@@ -30,15 +29,6 @@ class Living {
   }
   boolean collision(Lifeless other) {
     return abs(pos.x-other.pos.x)<w/2+other.w/2 && abs(pos.y-other.pos.y)<h/2+other.h/2;
-  }
-
-  void decreaseHealth(int damage) {
-    health-=damage;
-    if (health<=0) die();
-  }
-
-  void die() {
-    alive=false;
   }
 
   void checkBases() {
@@ -63,6 +53,10 @@ class Living {
         }
       }
     }
+  }
+
+  void die() {
+    alive=false;
   }
 
   void draw() {

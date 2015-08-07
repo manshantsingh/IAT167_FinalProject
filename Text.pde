@@ -36,8 +36,8 @@ class ColliderText extends Text {
     horizontalRange=textWidth(text)*2;
     VerticalRange=size/2.0;
   }
-  
-  void update(){
+
+  void update() {
     textColor=mouseCollision()?hoverColor:regularColor;
     super.update();
   }

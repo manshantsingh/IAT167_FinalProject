@@ -23,7 +23,7 @@ class Level {
     respawn();
 
     //temporarily clear checkpoints
-//    checkpoints=new ArrayList<Checkpoint>();
+    checkpoints=new ArrayList<Checkpoint>();
   }
 
   void respawn() {
@@ -62,7 +62,7 @@ class Level {
 
   void run() {
     if (paused) return;
-    
+
     background(255);
     pushMatrix();
     camera();
@@ -83,7 +83,7 @@ class Level {
 
   void pausePressed() {
     paused=!paused;
-    if(paused) showPaused();
+    if (paused) showPaused();
   }
 
   void showPaused() {
@@ -92,12 +92,6 @@ class Level {
     fill(0);
     textSize(50);
     text("Paused", width/2, height/2);
-  }
-
-  void camera() {
-    camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
-    translate(500, 450);
-    translate(-camera.x, -camera.y);
   }
 }
 

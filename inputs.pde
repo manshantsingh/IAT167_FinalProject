@@ -38,8 +38,7 @@ void mousePressed() {
         state=PLAYING;
         currentLevel=1;
         loadLevel();
-      }
-      else if(menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
+      } else if (menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
       break;
     }
   }

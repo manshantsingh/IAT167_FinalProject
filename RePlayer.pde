@@ -1,22 +1,22 @@
 class RePlayer {
   ArrayList<PVector> pos;
   ArrayList<Float> angle;
-  ArrayList<Integer> alpha;
+  ArrayList<Integer> drawState;
   PVector currentPos;
   float currentAngle;
-  int currentAlpha;
+  int currentDrawState;
 
   RePlayer() {
     pos=new ArrayList<PVector>();
     angle=new ArrayList<Float>();
-    alpha=new ArrayList<Integer>();
+    drawState=new ArrayList<Integer>();
     replays.add(this);
   }
 
-  void addFrame(PVector pos_, float angle_, int alpha_) {
+  void addFrame(PVector pos_, float angle_, int drawState_) {
     pos.add(pos_.get());
     angle.add(angle_);
-    alpha.add(alpha_);
+    drawState.add(drawState_);
   }
 
   void drawFrame(int index) {
@@ -24,16 +24,15 @@ class RePlayer {
 
     currentPos=pos.get(index);
     currentAngle=angle.get(index);
-    currentAlpha=alpha.get(index);
+    currentDrawState=drawState.get(index);
 
     pushMatrix();
-    strokeWeight(3);
-    stroke(0);
     translate(currentPos.x, currentPos.y);
-    rotate(currentAngle);
-    fill(255, 0, 0, currentAlpha);
-    ellipse(0, 0, PLAYER_SIZE, PLAYER_SIZE);
-    line(-PLAYER_SIZE/2, 0, PLAYER_SIZE/2, 0);
+    if (currentDrawState==0) {
+      rotate(currentAngle);
+      image(imgPlayer, -30, -30);
+    } else if (currentDrawState==1) image(imgFallingPlayer, -30, -30);
+    else image(imgAngel, -41, -47);
     popMatrix();
   }
 }

@@ -8,7 +8,7 @@ class ReplayLevel {
     enemies=new ArrayList<Enemy>();
     //    checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
-    initializeLevel(currentLevel, true);
+    initializeLevel(true);
     currentFrame=0;
     lastRePlayer=replays.get(replays.size()-1);
     texts.add(new Text("Replay", width/2, 100, 50, color(200, 0, 0)));
@@ -34,12 +34,6 @@ class ReplayLevel {
     }
     popMatrix();
     for (int i=0; i<texts.size (); i++) texts.get(i).update();
-  }
-
-  void camera() {
-    camera.set(lerp(camera.x, camTarget.x, CAMERA_SPEED), lerp(camera.y, camTarget.y, CAMERA_SPEED));
-    translate(500, 450);
-    translate(-camera.x, -camera.y);
   }
 
   void nextLevel() {

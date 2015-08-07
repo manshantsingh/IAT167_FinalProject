@@ -1,11 +1,12 @@
 class Enemy extends Living {
   Player target;
-  float angle, rotationValue, positionOffset, initialSpeed;
-  int  leftBound, rightBound, maxHealth, invincibility;
+  float angle, rotationValue, positionOffset, initialSpeed, offsetY;
+  int  leftBound, rightBound, health, maxHealth, invincibility;
   PVector initialPos;
 
   Enemy(float x, float y, int w_, int h_, int health_, float speed, int leftBound_, int rightBound_) {
-    super(x, y, w_, h_, health_);
+    super(x, y, w_, h_);
+    health=health_;
     maxHealth=health;
     initialPos=pos.get();
     initialSpeed=speed;
@@ -23,6 +24,7 @@ class Enemy extends Living {
     angle+=vel.x*rotationValue;
     checkBound();
     hitPlayer();
+    updateOffset();
     draw();
   }
 
@@ -40,8 +42,9 @@ class Enemy extends Living {
   }
 
   void decreaseHealth(int damage) {
-    super.decreaseHealth(damage);
+    health-=damage;
     invincibility=ENEMY_INVINCIBILITY_TIME;
+    if (health<=0) die();
   }
 
   void hitPlayer() {
@@ -49,21 +52,24 @@ class Enemy extends Living {
     else if (player.alive && collision(player)) {
       if (pos.y-player.pos.y>h/2 && vel.y<player.vel.y) {
         decreaseHealth(1);
-        vel.y=player.vel.y;
+        invincibility=ENEMY_INVINCIBILITY_TIME;
+        vel.y*=-1;
         player.vel.y*=-1;
       } else {
-        player.decreaseHealth(1);
+        player.die();
         player.pos.x-=pos.x-player.pos.x;
         player.vel.mult(-1);
       }
     }
   }
 
+  void updateOffset() {
+    offsetY=map(abs(sin(2*angle)), 0, 1, 0, -positionOffset);
+  }
+
   void draw() {
     pushMatrix();
-    translate(pos.x, pos.y);
-    float val=map(abs(sin(2*angle)), 0, 1, 0, positionOffset);
-    translate(0, -val);
+    translate(pos.x, pos.y+offsetY);
     rotate(angle);
     fill(128);
     stroke(0);
@@ -74,13 +80,29 @@ class Enemy extends Living {
 
 class WeakEnemy extends Enemy {
   WeakEnemy(float x, float y, int leftBound_, int rightBound_) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 1, 3, leftBound_, rightBound_);
+    super(x, y, 60, 60, 1, 3, leftBound_, rightBound_);
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y+offsetY);
+    rotate(angle);
+    image(imgWeakEnemy, -30, -30);
+    popMatrix();
   }
 }
 
 class StrongEnemy extends Enemy {
   StrongEnemy(float x, float y, int leftBound_, int rightBound_) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 7, leftBound_, rightBound_);
+    super(x, y, 68, 64, 2, 7, leftBound_, rightBound_);
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y+offsetY);
+    rotate(angle);
+    image(imgStrongEnemy, -34, -32);
+    popMatrix();
   }
 }
 
@@ -88,7 +110,7 @@ class NinjaEnemy extends Enemy {
   int timer;
 
   NinjaEnemy(float x, float y, int leftBound_, int rightBound_) {
-    super(x, y, PLAYER_SIZE, PLAYER_SIZE, 2, 5, leftBound_, rightBound_);
+    super(x, y, 60, 60, 2, 5, leftBound_, rightBound_);
     timer=NINJA_JUMP_INTERVAL;
   }
 
@@ -108,6 +130,14 @@ class NinjaEnemy extends Enemy {
       move(upForce);
       timer=NINJA_JUMP_INTERVAL;
     }
+  }
+
+  void draw() {
+    pushMatrix();
+    translate(pos.x, pos.y+offsetY);
+    rotate(angle);
+    image(imgNinjaEnemy, -43, -45);
+    popMatrix();
   }
 }
 
