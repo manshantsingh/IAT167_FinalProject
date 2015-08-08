@@ -60,7 +60,8 @@ class Enemy extends Living {
         decreaseHealth(1);
         invincibility=ENEMY_INVINCIBILITY_TIME;
         vel.y=5;
-        player.vel.y*=-1;
+        if (player.vel.y>0) player.vel.y*=-1;
+        else player.vel.y-=5;
       } else {
         player.die();
         player.pos.x-=pos.x-player.pos.x;

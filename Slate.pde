@@ -6,9 +6,9 @@ class Slate extends Lifeless {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(128);
-    stroke(0);
-    rect(-w/2, -h/2, w, h);
+    tint(128, 128);
+    image(imgSlate, -w/2, -h/2);
+    noTint();
     popMatrix();
   }
 }
@@ -44,9 +44,9 @@ class InvisibleSlate extends Slate {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(188, 51, 164, alpha);
-    stroke(0, alpha);
-    rect(-w/2, -h/2, w, h);
+    tint(188, 51, 164, alpha);
+    image(imgSlate, -w/2, -h/2);
+    noTint();
     popMatrix();
   }
 }
@@ -109,9 +109,9 @@ class VanishSlate extends Slate {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(42, 148, 208, alpha);
-    stroke(0, alpha);
-    rect(-w/2, -h/2, w, h);
+    tint(42, 148, 208, alpha);
+    image(imgSlate, -w/2, -h/2);
+    noTint();
     popMatrix();
   }
 }
@@ -149,9 +149,9 @@ class FallingSlate extends Slate {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(128, 64, 0);
-    stroke(0);
-    rect(-w/2, -h/2, w, h);
+    tint(210, 134, 14, 255);
+    image(imgSlate, -w/2, -h/2);
+    noTint();
     popMatrix();
   }
 }
