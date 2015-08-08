@@ -37,6 +37,7 @@ int currentLevel, state, latestAccessableLevel;
 Level level;
 ReplayLevel replayLevel;
 Finishpoint finishpoint;
+boolean practiceMode;
 
 void setup() {
   size(1000, 700);
@@ -65,6 +66,7 @@ void draw() {
 
 void initialize() {
   dataInitialize();
+  practiceMode=false;
   textAlign(CENTER, CENTER);
   textInitialize();
   currentLevel=1;

@@ -31,7 +31,10 @@ class RePlayer {
     if (currentDrawState==0) {
       rotate(currentAngle);
       image(imgPlayer, -30, -30);
-    } else if (currentDrawState==1) image(imgFallingPlayer, -30, -30);
+    } else if (currentDrawState==1) {
+      rotate(currentAngle);
+      image(imgSpeedingPlayer, -30, -30);
+    } else if (currentDrawState==2) image(imgFallingPlayer, -30, -30);
     else image(imgAngel, -41, -47);
     popMatrix();
   }

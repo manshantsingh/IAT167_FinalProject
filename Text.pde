@@ -42,6 +42,11 @@ class ColliderText extends Text {
     super.update();
   }
 
+  void changeText(String text_) {
+    text=text_;
+    horizontalRange=textWidth(text)*2;
+  }
+
   boolean mouseCollision() {
     return abs(mouseX-pos.x)<horizontalRange && abs(mouseY-pos.y)<VerticalRange;
   }

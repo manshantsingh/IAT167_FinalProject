@@ -11,8 +11,11 @@ class Finishpoint extends Lifeless {
   }
 
   void showReplay() {
-    state=REPLAYING;
-    replayLevel=new ReplayLevel(player.replayer.drawState.size()-1);
+    if (practiceMode) nextLevel();
+    else {
+      state=REPLAYING;
+      replayLevel=new ReplayLevel(player.replayer.drawState.size()-1);
+    }
   }
 
   void draw() {

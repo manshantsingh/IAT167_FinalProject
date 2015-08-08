@@ -2,7 +2,7 @@ class Player extends Living {
   float angle;
   int timer;
   RePlayer replayer;
-  boolean transitionTime, isFalling;
+  boolean transitionTime, isFalling, isFast;
 
   Player(float x, float y) {
     super(x, y, 60, 60);
@@ -11,6 +11,7 @@ class Player extends Living {
     camera=camTarget.get();
     transitionTime=false;
     isFalling=false;
+    isFast=false;
     bounceBack=-0.1;
     replayer=new RePlayer();
     timer=SCREEN_OUT_TIME;
@@ -24,12 +25,13 @@ class Player extends Living {
       super.update();
       angle+=vel.x*PLAYER_ROTATION_SPEED;
       vel.x*=FRICTION;
+      isFast=abs(vel.x)>8;
       checkBounds();
       checkCheckpoints();
     } else {
       pos.y-=ANGEL_RISE_SPEED;
     }
-    replayer.addFrame(pos, angle, isFalling?1:alive?0:2);
+    replayer.addFrame(pos, angle, isFalling?2:alive?isFast?1:0:3);
     draw();
   }
 
@@ -83,7 +85,8 @@ class Player extends Living {
     if (isFalling) image(imgFallingPlayer, -30, -30);
     else if (alive) {
       rotate(angle);
-      image(imgPlayer, -30, -30);
+      if (isFast) image(imgSpeedingPlayer, -30, -30);
+      else image(imgPlayer, -30, -30);
     } else image(imgAngel, -41, -47);
     popMatrix();
   }

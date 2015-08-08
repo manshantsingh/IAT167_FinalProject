@@ -1,13 +1,12 @@
 class Thorn extends DangerLifeless {
-  Thorn(float x, float y, int w_) {
-    super(x, y, w_, 20);
+  Thorn(float x, float y) {
+    super(x, y, 280, 30);
   }
 
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(128, 0, 0);
-    rect(-w/2, -h/2, w, h);
+    image(imgThorns, -w/2, -h/2);
     popMatrix();
   }
 }

@@ -36,10 +36,5 @@ class ReplayLevel {
     popMatrix();
     for (int i=0; i<texts.size (); i++) texts.get(i).update();
   }
-
-  void nextLevel() {
-    currentLevel++;
-    loadLevel();
-  }
 }
 

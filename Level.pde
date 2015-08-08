@@ -27,7 +27,7 @@ class Level {
     musicPlaying.play();
 
     //temporarily clear checkpoints
-    checkpoints=new ArrayList<Checkpoint>();
+    if (!practiceMode) checkpoints=new ArrayList<Checkpoint>();
   }
 
   void respawn() {

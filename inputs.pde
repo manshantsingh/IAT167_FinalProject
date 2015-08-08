@@ -12,7 +12,7 @@ void keyPressed() {
   } else if (key=='w'||key=='W') up=true;
   else if (key=='a'||key=='A') left=true;
   else if (key=='d'||key=='D') right=true;
-  else if (key=='\n' && state==REPLAYING) replayLevel.nextLevel();
+  else if (key=='\n' && state==REPLAYING) nextLevel();
   else if ((key=='p'||key=='P') && state==PLAYING) level.pausePressed();
 }
 
@@ -36,6 +36,10 @@ void mousePressed() {
         currentLevel=1;
         loadLevel();
       } else if (menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
+      else if (menuTextPracticeMode.mouseCollision()) {
+        practiceMode=!practiceMode;
+        menuTextPracticeMode.changeText("Practice Mode: "+(practiceMode?"ON":"OFF"));
+      }
       break;
     case SELECT_WHAT_LEVEL:
       if (txtBackToMenu.mouseCollision()) state=MAIN_MENU;

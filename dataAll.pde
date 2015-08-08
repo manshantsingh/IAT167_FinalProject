@@ -1,8 +1,8 @@
 //living
-PImage imgPlayer, imgFallingPlayer, imgAngel, imgWeakEnemy, imgStrongEnemy, imgNinjaEnemy;
+PImage imgPlayer, imgSpeedingPlayer, imgFallingPlayer, imgAngel, imgWeakEnemy, imgStrongEnemy, imgNinjaEnemy;
 
 //lifeless
-PImage imgSlate;
+PImage imgSlate, imgThorns;
 
 //audio
 Minim minim;
@@ -12,6 +12,8 @@ AudioSample soundFalling, soundDie, soundBounce, soundDamageEnemy, soundKillEnem
 void dataInitialize() {
   imgPlayer=loadImage("player.png");
   imgPlayer.resize(60, 60);
+  imgSpeedingPlayer=loadImage("speedingPlayer.png");
+  imgSpeedingPlayer.resize(60, 60);
   imgFallingPlayer=loadImage("fallingPlayer.png");
   imgFallingPlayer.resize(60, 60);
   imgAngel=loadImage("angel.png");
@@ -25,6 +27,8 @@ void dataInitialize() {
 
   imgSlate=loadImage("slate.png");
   imgSlate.resize(250, 20);
+  imgThorns=loadImage("thorns.png");
+  imgThorns.resize(280, 30);
 
   minim=new Minim(this);
   musicMenu=minim.loadFile("mainMenu.wav");

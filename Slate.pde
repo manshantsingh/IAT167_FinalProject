@@ -6,7 +6,7 @@ class Slate extends Lifeless {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    tint(128, 128);
+    tint(128, 255);
     image(imgSlate, -w/2, -h/2);
     noTint();
     popMatrix();
@@ -149,7 +149,7 @@ class FallingSlate extends Slate {
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    tint(210, 134, 14, 255);
+    tint(242, 164, 39, 255);
     image(imgSlate, -w/2, -h/2);
     noTint();
     popMatrix();

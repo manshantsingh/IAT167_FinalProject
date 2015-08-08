@@ -7,8 +7,8 @@ void initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(100, height-90));
     finishpoint=new Finishpoint(width, height-90);
     if (isReplay) return;
-    texts.add(new Text(" A/D or Left/Right\nfor Movement", 150, 2*height/3, 22, color(0)));
-    texts.add(new Text(" W or Up\nfor Jump", 425, 2*height/3, 22, color(0)));
+    texts.add(new Text("A/D or Left/Right\nfor Movement", 150, 2*height/3, 22, color(0)));
+    texts.add(new Text("W or Up\nfor Jump", 425, 2*height/3, 22, color(0)));
     texts.add(new Text("Finish", width, 2*height/3, 22, color(0)));
     break;
   case 2:
@@ -25,6 +25,7 @@ void initializeLevel(boolean isReplay) {
     finishpoint=new Finishpoint(2700, height-90);
     if (isReplay) return;
     texts.add(new Text("Press P to pause\nif needed", 100, 2*height/3, 22, color(0)));
+    texts.add(new Text("Hold W or Up for\nAutomatic Jumping", 735, 400, 22, color(0)));
     texts.add(new Text("Wait for\nPlatform", 1500, height-200, 22, color(0)));
     break;
   case 3:
@@ -34,9 +35,9 @@ void initializeLevel(boolean isReplay) {
     bases.add(new Base(900, -50, 800, 30));
     bases.add(new VerticalSlate(1475, 500, 285, height-40));
     bases.add(new VerticalSlate(325, 200, -65, 335));
-    bases.add(new Thorn(900, height-75, 300));
-    bases.add(new Thorn(900, 275, 300));
-    bases.add(new Thorn(900, -75, 300));
+    bases.add(new Thorn(900, height-75));
+    bases.add(new Thorn(900, 275));
+    bases.add(new Thorn(900, -75));
     checkpoints.add(new Checkpoint(0, height-90));
     checkpoints.add(new Checkpoint(1200, 260));
     finishpoint=new Finishpoint(1200, -90);
@@ -116,7 +117,7 @@ void initializeLevel(boolean isReplay) {
     bases.add(new Base(width, height-2*60, 60, 60));
     bases.add(new VanishSlate(width+200, height-250, true));
     bases.add(new InvisibleSlate(width+600, height-350));
-    bases.add(new Thorn(width-300, height-100, 100));
+    bases.add(new Thorn(width-300, height-100));
     bases.add(new Compresser(-width/2, height-365, height-115, 125, true));
     bases.add(new Compresser(-width/2+200, height-365, height-115, 125, false));
     bases.add(new Compresser(-width/2+400, height-365, height-115, 125, true));
@@ -138,6 +139,11 @@ void loadLevel() {
     return;
   }
   level=new Level();
+}
+
+void nextLevel() {
+  currentLevel++;
+  loadLevel();
 }
 
 void camera() {

@@ -1,5 +1,5 @@
 //main menu and level selector
-ColliderText menuTextStart, menuTextSelectLevel, txtBackToMenu;
+ColliderText menuTextStart, menuTextSelectLevel, menuTextPracticeMode, txtBackToMenu;
 ColliderText[] txtLevels=new ColliderText[6];
 
 //pause menu
@@ -10,6 +10,7 @@ void showMainMenu() {
   background(255);
   menuTextStart.update();
   menuTextSelectLevel.update();
+  menuTextPracticeMode.update();
 }
 
 void showLevelSelection() {
@@ -25,6 +26,7 @@ void textInitialize() {
   //main menu
   menuTextStart=new ColliderText("START", width/2, 400, 50, color(255, 0, 0), color(0, 255, 0));
   menuTextSelectLevel=new ColliderText("Level Select", width/2, 500, 50, color(255, 0, 0), color(0, 255, 0));
+  menuTextPracticeMode=new ColliderText("Practice Mode: OFF", 850, 100, 25, color(255, 0, 0), color(0, 255, 0));
 
   //level selection
   for (int i=0; i<txtLevels.length; i++) {
