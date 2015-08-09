@@ -24,7 +24,7 @@ class Level {
 
     if (!practiceMode) {
       musicPlaying.rewind();
-      musicPlaying.play();
+      musicPlaying.loop(20);
       checkpoints=new ArrayList<Checkpoint>();
     }
   }

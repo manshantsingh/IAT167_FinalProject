@@ -49,9 +49,7 @@ void dataInitialize() {
 
   minim=new Minim(this);
   musicMenu=minim.loadFile("mainMenu.wav");
-  musicMenu.loop(60);
   musicPlaying=minim.loadFile("playing.wav");
-  musicPlaying.loop(20);
 
   soundFalling=minim.loadSample("falling.wav");
   soundDie=minim.loadSample("die.wav");
@@ -61,7 +59,7 @@ void dataInitialize() {
   soundNinjaDamage=minim.loadSample("ninjaDamage.wav");
   soundNinjaKill=minim.loadSample("ninjaKill.wav");
   soundFinish=minim.loadSample("finish.wav");
-
-  musicMenu.play();
+  
+  musicMenu.loop(60);
 }
 

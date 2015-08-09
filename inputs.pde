@@ -68,7 +68,7 @@ void mousePressed() {
 void playingToMainMenu() {
   musicPlaying.pause();
   musicMenu.rewind();
-  musicMenu.play();
+  musicMenu.loop(60);
   state=MAIN_MENU;
 }
 
