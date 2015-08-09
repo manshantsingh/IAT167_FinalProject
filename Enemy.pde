@@ -139,6 +139,11 @@ class NinjaEnemy extends Enemy {
     }
   }
 
+  void decreaseHealth(int damage) {
+    super.decreaseHealth(damage);
+    timer+=NINJA_JUMP_INTERVAL;
+  }
+
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y+offsetY);

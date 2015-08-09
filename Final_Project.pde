@@ -10,7 +10,6 @@ final int SELECT_WHAT_LEVEL=3;
 final PVector GRAVITY=new PVector(0, 0.4);
 final float PLAYER_JUMP_FORCE=-10;
 final float PLAYER_SPEED=0.3;
-final int DEATH=100;
 final int ENEMY_INVINCIBILITY_TIME=15;
 final int NINJA_JUMP_INTERVAL=120;
 final int VANISH_SLATE_TIME=100;
@@ -22,6 +21,7 @@ final float CAMERA_SPEED=0.5;
 final float ZOOM_INCREMENT=1.1;
 final int BEAT_ALL_LEVELS=7;
 final float ANGEL_RISE_SPEED=2;
+final color BACKGROUND_COLOR=color(116, 224, 255);
 
 //all lists
 ArrayList<Lifeless> bases;

@@ -35,6 +35,8 @@ void mousePressed() {
         state=PLAYING;
         currentLevel=1;
         loadLevel();
+        musicPlaying.rewind();
+        musicPlaying.play();
       } else if (menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
       else if (menuTextPracticeMode.mouseCollision()) {
         practiceMode=!practiceMode;
@@ -48,6 +50,8 @@ void mousePressed() {
           state=PLAYING;
           currentLevel=i+1;
           loadLevel();
+          musicPlaying.rewind();
+          musicPlaying.play();
         }
       }
       break;

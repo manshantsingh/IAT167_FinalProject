@@ -2,7 +2,10 @@
 PImage imgPlayer, imgSpeedingPlayer, imgFallingPlayer, imgAngel, imgWeakEnemy, imgStrongEnemy, imgNinjaEnemy;
 
 //lifeless
-PImage imgSlate, imgThorns;
+PImage imgSlate, imgThorns, imgBaseTile, imgThickBaseBottom, imgStairTop, imgStairBottom, imgBlocker;
+
+//backgrounds
+PImage imgBackgroundFull, imgCoverPage, imgLevelSelector;
 
 //audio
 Minim minim;
@@ -29,10 +32,26 @@ void dataInitialize() {
   imgSlate.resize(250, 20);
   imgThorns=loadImage("thorns.png");
   imgThorns.resize(280, 30);
+  imgBaseTile=loadImage("baseTile.png");
+  imgBaseTile.resize(50, 30);
+  imgThickBaseBottom=loadImage("stairBottom.png");
+  imgThickBaseBottom.resize(50, 30);
+  imgStairTop=loadImage("baseTileExtended.png");
+  imgStairTop.resize(80, 80);
+  imgStairBottom=loadImage("stairBottomExtended.png");
+  imgStairBottom.resize(80, 80);
+  imgBlocker=loadImage("blocker.png");
+  imgBlocker.resize(30, 100);
+
+  imgBackgroundFull=loadImage("backgroundFull.png");
+  imgCoverPage=loadImage("coverPage.png");
+  imgLevelSelector=loadImage("levelSelector.png");
 
   minim=new Minim(this);
   musicMenu=minim.loadFile("mainMenu.wav");
+  musicMenu.loop(60);
   musicPlaying=minim.loadFile("playing.wav");
+  musicPlaying.loop(20);
 
   soundFalling=minim.loadSample("falling.wav");
   soundDie=minim.loadSample("die.wav");

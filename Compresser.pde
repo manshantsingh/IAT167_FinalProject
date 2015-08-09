@@ -34,7 +34,7 @@ class Compresser extends DangerLifeless {
     fill(0);
     float dist=pos.y-topBound;
     rect(-15, -dist, 30, dist);
-    fill(128, 0, 0);
+    fill(200, 0, 0);
     rect(-w/2, -h/2, w, h);
     popMatrix();
   }

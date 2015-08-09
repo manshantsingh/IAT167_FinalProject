@@ -15,19 +15,18 @@ class Level {
     checkpoints=new ArrayList<Checkpoint>();
     texts=new ArrayList<Text>();
     replays=new ArrayList<RePlayer>();
-    initializeLevel(false);
+    if (initializeLevel(false)) return;
     respawnPos=checkpoints.get(0).respawnPos.get();
     face=2;
     alpha=255;
     paused=false;
     respawn();
 
-    musicMenu.pause();
-    musicPlaying.rewind();
-    musicPlaying.play();
-
-    //temporarily clear checkpoints
-    if (!practiceMode) checkpoints=new ArrayList<Checkpoint>();
+    if (!practiceMode) {
+      musicPlaying.rewind();
+      musicPlaying.play();
+      checkpoints=new ArrayList<Checkpoint>();
+    }
   }
 
   void respawn() {
@@ -69,8 +68,6 @@ class Level {
       pauseMenu();
       return;
     }
-
-    background(255);
     pushMatrix();
     camera();
     for (int i=0; i<texts.size (); i++) texts.get(i).update();
