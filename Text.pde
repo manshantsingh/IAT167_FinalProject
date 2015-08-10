@@ -59,32 +59,36 @@ class ColliderText extends Text {
 class LevelSelectorText extends Text {
   int radius, diameter;
   color currentColor;
+  boolean unlocked;
   LevelSelectorText(String text_, float x, float y) {
     super(text_, x, y, 50);
     radius=50;
     diameter=2*radius;
   }
 
-  void update() {
-    currentColor=mouseCollision()?color(255, 166, 60):color(255, 100, 100);
+  void update(int index) {
+    unlocked=index<latestAccessableLevel;
+    if (unlocked) currentColor=mouseCollision()?color(255, 166, 60):color(255, 100, 100);
+    else currentColor=color(100, 100, 255);
     super.update();
   }
 
   void draw() {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(currentColor);
     stroke(0);
     strokeWeight(3);
+    fill(currentColor);
     ellipse(0, 0, diameter, diameter);
     textSize(size);
     fill(color(0));
-    text(text, 0, -2);
+    if (unlocked) text(text, 0, -2);
+    else text("*", 0, 2);
     popMatrix();
   }
 
   boolean mouseCollision() {
-    return dist(pos.x, pos.y, mouseX, mouseY)<=radius;
+    return unlocked && dist(pos.x, pos.y, mouseX, mouseY)<=radius;
   }
 }
 

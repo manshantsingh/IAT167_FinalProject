@@ -10,7 +10,7 @@ PImage imgBackgroundFull, imgCoverPage, imgLevelSelector;
 //audio
 Minim minim;
 AudioPlayer musicMenu, musicPlaying;
-AudioSample soundFalling, soundDie, soundBounce, soundDamageEnemy, soundKillEnemy, soundNinjaDamage, soundNinjaKill, soundFinish;
+AudioSample soundFalling, soundDie, soundBounce, soundDamageEnemy, soundKillEnemy, soundNinjaDamage, soundNinjaKill, soundCheckpoint, soundFinish;
 
 void dataInitialize() {
   imgPlayer=loadImage("player.png");
@@ -58,8 +58,9 @@ void dataInitialize() {
   soundKillEnemy=minim.loadSample("killEnemy.wav");
   soundNinjaDamage=minim.loadSample("ninjaDamage.wav");
   soundNinjaKill=minim.loadSample("ninjaKill.wav");
+  soundCheckpoint=minim.loadSample("checkpoint.wav");
   soundFinish=minim.loadSample("finish.wav");
-  
+
   musicMenu.loop(60);
 }
 

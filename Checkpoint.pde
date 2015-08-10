@@ -15,8 +15,14 @@ class Checkpoint extends Lifeless {
       checked=true;
       currentColor=color(0, 255, 0);
       level.respawnPos=respawnPos;
+      soundCheckpoint.trigger();
     }
     return true;
+  }
+
+  void startPoint() {
+    checked=true;
+    currentColor=color(0, 255, 0);
   }
 
   void draw() {

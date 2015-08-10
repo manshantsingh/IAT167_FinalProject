@@ -20,7 +20,7 @@ void showLevelSelection() {
   image(imgLevelSelector, 0, 0);
   staticTxtSelectLevel.update();
   for (int i=0; i<txtLevels.length; i++) {
-    txtLevels[i].update();
+    txtLevels[i].update(i);
   }
   txtBackToMenu.update();
 }

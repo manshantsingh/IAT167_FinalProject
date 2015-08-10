@@ -59,7 +59,7 @@ void draw() {
   case SELECT_WHAT_LEVEL:
     showLevelSelection();
     break;
-  default: //main-menu
+  default: // sets to main-menu
     state=MAIN_MENU;
   }
 }
@@ -70,7 +70,7 @@ void initialize() {
   textAlign(CENTER, CENTER);
   textInitialize();
   currentLevel=1;
-  latestAccessableLevel=0;
+  latestAccessableLevel=1;
   state=MAIN_MENU;
 }
 
