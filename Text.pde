@@ -29,7 +29,7 @@ class ColliderText extends Text {
 
   ColliderText(String text_, float x, float y, int size_) {
     super(text_, x, y, size_);
-    horizontalRange=textWidth(text)*2;
+    horizontalRange=textWidth(text)/2.0;
     VerticalRange=size/2.0;
   }
 
@@ -40,7 +40,7 @@ class ColliderText extends Text {
 
   void changeText(String text_) {
     text=text_;
-    horizontalRange=textWidth(text)*2;
+    horizontalRange=textWidth(text)/2.0;
   }
 
   boolean mouseCollision() {
@@ -59,16 +59,16 @@ class ColliderText extends Text {
 class LevelSelectorText extends Text {
   int radius, diameter;
   color currentColor;
-  boolean unlocked;
+  boolean unlocked, gradeA;
   LevelSelectorText(String text_, float x, float y) {
     super(text_, x, y, 50);
     radius=50;
     diameter=2*radius;
+    gradeA=false;
   }
 
-  void update(int index) {
-    unlocked=index<latestAccessableLevel;
-    if (unlocked) currentColor=mouseCollision()?color(255, 166, 60):color(255, 100, 100);
+  void update() {
+    if (unlocked) currentColor=mouseCollision()?color(120, 238, 220):gradeA?color(255, 215, 0):color(255, 100, 100);
     else currentColor=color(100, 100, 255);
     super.update();
   }
@@ -82,7 +82,7 @@ class LevelSelectorText extends Text {
     ellipse(0, 0, diameter, diameter);
     textSize(size);
     fill(color(0));
-    if (unlocked) text(text, 0, -2);
+    if (unlocked) text(text, 0, 0);
     else text("*", 0, 2);
     popMatrix();
   }

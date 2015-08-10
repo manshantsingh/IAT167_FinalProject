@@ -37,14 +37,17 @@ void mousePressed() {
         loadLevel();
         musicPlaying.rewind();
         musicPlaying.play();
-      } else if (menuTextSelectLevel.mouseCollision()) state=SELECT_WHAT_LEVEL;
-      else if (menuTextPracticeMode.mouseCollision()) {
+      } else if (menuTextSelectLevel.mouseCollision()) {
+        state=SELECT_WHAT_LEVEL;
+        for (int i=0; i<txtLevels.length; i++) txtLevels[i].unlocked=i<latestAccessableLevel;
+      } else if (menuTextPracticeMode.mouseCollision()) {
         practiceMode=!practiceMode;
         menuTextPracticeMode.changeText("Practice Mode: "+(practiceMode?"ON":"OFF"));
       }
       break;
     case SELECT_WHAT_LEVEL:
       if (txtBackToMenu.mouseCollision()) state=MAIN_MENU;
+      else if (txtResetStats.mouseCollision()) resetStats();
       else for (int i=0; i<txtLevels.length; i++) {
         if (txtLevels[i].mouseCollision()) {
           state=PLAYING;

@@ -1,3 +1,28 @@
+/********************THINGS YOU NEED TO KNOW BEFORE MARKING********************\
+ *
+ * + I just recently added the replay mechanism because that was something 
+ *   I really really wanted to add but was always thinking how to.
+ * + Since the replay mechanism has just been added, there were a few
+ *   requirements I might have not been able to fulfill.
+ *      - There are no random movements in my game because if I have random
+ *        movements, then my replays will not be in sync.
+ *
+ * + Since my replays were added at the end, the ReplayLevel class might
+ *   have some redundant code from the Level class, but I do not want to change
+ *   it now because there isn't much time left. Even if I took the replays away,
+ *   I was still exceeding the requirements, therefore are just there to make
+ *   the player be happy about his/her accomplishments, and laugh on their fails.
+ *
+ * + There is no Game Over screen in this game, because I feel that it does not
+ *   require it. It kind of seemed to contradict with the "keep trying until you
+ *   win" theme of the game. There are many other features/aspects of the game
+ *   that are present instead of that.
+ *
+ * + Also, all the variable, field and method names are self descriptive. They
+ *   describe what they are and what they do. Therefore, commenting using
+ *   synonyms will just be redundant.
+ */
+
 import ddf.minim.*;
 
 //all state constants
@@ -34,10 +59,11 @@ ArrayList<RePlayer> replays;
 Player player;
 PVector camera, camTarget;
 int currentLevel, state, latestAccessableLevel;
+boolean practiceMode;
+float goalTime;
 Level level;
 ReplayLevel replayLevel;
 Finishpoint finishpoint;
-boolean practiceMode;
 
 void setup() {
   size(1000, 700);
@@ -45,7 +71,6 @@ void setup() {
 }
 
 void draw() {
-  //  println(frameRate);
   switch(state) {
   case PLAYING:
     level.run();
@@ -59,18 +84,19 @@ void draw() {
   case SELECT_WHAT_LEVEL:
     showLevelSelection();
     break;
-  default: // sets to main-menu
+  default:
     state=MAIN_MENU;
   }
 }
 
+//game load initialize manager
 void initialize() {
-  dataInitialize();
-  practiceMode=false;
-  textAlign(CENTER, CENTER);
-  textInitialize();
   currentLevel=1;
   latestAccessableLevel=1;
   state=MAIN_MENU;
+  practiceMode=false;
+
+  dataInitialize();
+  textInitialize();
 }
 

@@ -7,11 +7,15 @@ PImage imgSlate, imgThorns, imgBaseTile, imgThickBaseBottom, imgStairTop, imgSta
 //backgrounds
 PImage imgBackgroundFull, imgCoverPage, imgLevelSelector;
 
+//others
+PImage imgGradeA;
+
 //audio
 Minim minim;
 AudioPlayer musicMenu, musicPlaying;
 AudioSample soundFalling, soundDie, soundBounce, soundDamageEnemy, soundKillEnemy, soundNinjaDamage, soundNinjaKill, soundCheckpoint, soundFinish;
 
+//initializes all images and sounds with the files in the data folder
 void dataInitialize() {
   imgPlayer=loadImage("player.png");
   imgPlayer.resize(60, 60);
@@ -46,6 +50,7 @@ void dataInitialize() {
   imgBackgroundFull=loadImage("backgroundFull.png");
   imgCoverPage=loadImage("coverPage.png");
   imgLevelSelector=loadImage("levelSelector.png");
+  imgGradeA=loadImage("gradeA.png");
 
   minim=new Minim(this);
   musicMenu=minim.loadFile("mainMenu.wav");

@@ -6,18 +6,11 @@ class Finishpoint extends Lifeless {
 
   boolean hit() {
     soundFinish.trigger();
-    showReplay();
+    level.showReplay();
     return true;
   }
 
-  void showReplay() {
-    if (practiceMode) nextLevel();
-    else {
-      if (latestAccessableLevel<=currentLevel) latestAccessableLevel++;
-      state=REPLAYING;
-      replayLevel=new ReplayLevel(player.replayer.drawState.size()-1);
-    }
-  }
+
 
   void draw() {
     pushMatrix();

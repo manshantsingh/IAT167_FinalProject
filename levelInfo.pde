@@ -6,10 +6,11 @@ boolean initializeLevel(boolean isReplay) {
     bases.add(new Blocker(3*width/4+50, height-117, 100));
     checkpoints.add(new Checkpoint(100, height-90));
     finishpoint=new Finishpoint(width, height-90);
+    goalTime=5.0;
     if (isReplay) return false;
-    texts.add(new Text("A/D or Left/Right\nfor Movement", 150, 2*height/3, 22));
-    texts.add(new Text("W or Up\nfor Jump", 425, 2*height/3, 22));
-    texts.add(new Text("Finish", width, 2*height/3, 22));
+    texts.add(new Text("A/D or Left/Right\nfor Movement", 150, 2*height/3, 32));
+    texts.add(new Text("W or Up\nfor Jump", 425, 2*height/3, 32));
+    texts.add(new Text("Finish", width, 2*height/3, 32));
     break;
   case 2:
     bases.add(new Base(100, height-50, 300));
@@ -23,10 +24,11 @@ boolean initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(1200, height-90));
     bases.add(new Base(2700, height-50, 200));
     finishpoint=new Finishpoint(2700, height-90);
+    goalTime=10.0;
     if (isReplay) return false;
-    texts.add(new Text("Press P to pause\nif needed", 100, 2*height/3, 22));
-    texts.add(new Text("Hold W or Up for\nAutomatic Jumping", 735, 400, 22));
-    texts.add(new Text("Wait for\nPlatform", 1500, height-200, 22));
+    texts.add(new Text("Press P to pause\nif needed", 100, 2*height/3, 32));
+    texts.add(new Text("Hold W or Up for\nAutomatic Jumping", 735, 400, 32));
+    texts.add(new Text("Wait for\nPlatform", 1500, height-200, 32));
     break;
   case 3:
     bases.add(new Base(130, height-50, 300));
@@ -41,8 +43,9 @@ boolean initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(30, height-90));
     checkpoints.add(new Checkpoint(1200, 260));
     finishpoint=new Finishpoint(1200, -90);
+    goalTime=15.0;
     if (isReplay) return false;
-    texts.add(new Text("Danger", 900, height-200, 22));
+    texts.add(new Text("Danger", 900, height-200, 32));
     break;
   case 4:
     bases.add(new Base(473, height-50, 2200));
@@ -62,9 +65,10 @@ boolean initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(-530, height-90));
     checkpoints.add(new Checkpoint(1435, 305));
     finishpoint=new Finishpoint(5300, 305);
+    goalTime=20.0;
     if (isReplay) return false;
     texts.add(new Text("?", 2000, 250, 32));
-    texts.add(new Text("Bad Box", 2400, 200, 22));
+    texts.add(new Text("Bad Box", 2400, 200, 32));
     break;
   case 5:
     bases.add(new Base(0, height-50, 500));
@@ -82,9 +86,10 @@ boolean initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(-150, height-90));
     checkpoints.add(new Checkpoint(150, height-90));
     finishpoint=new Finishpoint(3475, 215);
+    goalTime=20.0;
     if (isReplay) return false;
-    texts.add(new Text("hint: jump left", -150, 2*height/3, 22));
-    texts.add(new Text("Naughty Ninja", 1770, 200, 22));
+    texts.add(new Text("hint: jump left", -200, 2*height/3, 50));
+    texts.add(new Text("Naughty Ninja", 1770, 200, 50));
     break;
   case 6:
     bases.add(new Base(0, height-50, 500));
@@ -112,6 +117,7 @@ boolean initializeLevel(boolean isReplay) {
     checkpoints.add(new Checkpoint(-2000, -340));
     checkpoints.add(new Checkpoint(-5200, -540));
     finishpoint=new Finishpoint(-7400, -540);
+    goalTime=50.0;
     break;
   default:
     playingToMainMenu();
@@ -144,5 +150,13 @@ void camera() {
   image(imgBackgroundFull.get(x, y, width, height), 0, 0);
   translate(500, 400);
   translate(-camera.x, -camera.y);
+}
+
+void resetStats() {
+  latestAccessableLevel=1;
+  for (int i=0; i<txtLevels.length; i++) {
+    txtLevels[i].unlocked=i<latestAccessableLevel;
+    txtLevels[i].gradeA=false;
+  }
 }
 

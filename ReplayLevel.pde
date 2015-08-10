@@ -1,9 +1,11 @@
 class ReplayLevel {
   int currentFrame, totalFrames;
   RePlayer lastRePlayer;
+  boolean gotA;
 
-  ReplayLevel(int totalFrames_) {
+  ReplayLevel(int totalFrames_, boolean gotA_) {
     totalFrames=totalFrames_;
+    gotA=gotA_;
     bases=new ArrayList<Lifeless>();
     enemies=new ArrayList<Enemy>();
     texts=new ArrayList<Text>();
@@ -31,6 +33,7 @@ class ReplayLevel {
     }
     popMatrix();
     for (int i=0; i<texts.size (); i++) texts.get(i).update();
+    if (gotA) image(imgGradeA, 700, 100);
   }
 }
 
