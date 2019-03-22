@@ -1,9 +1,8 @@
 # Final_Project
 IAT-167 Final Project
 
-This game contains sprites that were made by me but are based on Red ball 4 (Volume 1 & 2). The music is extracted from 
-Red Ball 4 Volume 2 and some level designs were inspired from Red ball 1.
+The game contains sprites I made based off of Red Ball 4 (Vol. 1/2). Music extracted from *Red Ball 4 Vol. 2*. Red Ball 1 game level designs inspired game levels.
 
-This Game was used as an assignment submission in a university course and is just for educational purposes.
+Made for educational purposes :D
 
 To play the game, just download and run [Final_Project.jar](https://github.com/manshantsingh/IAT167_FinalProject/raw/master/Final_Project.jar) file.
